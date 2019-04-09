@@ -48,10 +48,10 @@ class Home extends StatelessWidget {
 
   Center adminPage(DocumentSnapshot snapshot) {
     return Center(
-        child: Text('${snapshot.data['role']} ${snapshot.data['name']}'));
+        child: Text('${snapshot.data['role']} ${snapshot.data['Nombre']}'));
   }
 
   Center userPage(DocumentSnapshot snapshot) {
-    return Center(child: Text(snapshot.data['name']));
+    return Center(child: Text(snapshot.data['Nombre']));
   }
 }
