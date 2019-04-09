@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1039814586733",
+    "firebase_url": "https://gymtastic-b8d89.firebaseio.com",
+    "project_id": "gymtastic-b8d89",
+    "storage_bucket": "gymtastic-b8d89.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1039814586733:android:9578cba866d14d60",
+        "android_client_info": {
+          "package_name": "ucc.gymtastic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1039814586733-1irdr3o28gpl5ejrd14bormuhtncem9q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiH5HcYVVLo8MW5-78T-EwW4XEbU5u3Wc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1039814586733-1irdr3o28gpl5ejrd14bormuhtncem9q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
