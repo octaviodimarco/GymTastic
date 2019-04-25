@@ -11,8 +11,12 @@ class _RegisterPageState extends State<RegisterPage> {
 
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  String _name;
+  String _lastname;
+  String _born;
   String _email;
   String _password;
+  String _city;
 
   bool _isRegistering = false;
 
@@ -76,7 +80,9 @@ class _RegisterPageState extends State<RegisterPage> {
               key: _formKey,
               child: ListView(
                 children: <Widget>[
+
                   Image.asset('assets/logo2.jpg'),
+
                   TextFormField(autocorrect: false,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(labelText: 'Email'),
@@ -106,7 +112,75 @@ class _RegisterPageState extends State<RegisterPage> {
                       });
                     },
                   ),
-                  Padding(
+
+                    TextFormField(autocorrect: false,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(labelText: 'Nombre'),
+                      validator: (val) {
+                        if (val.isEmpty) {
+                          return 'Please enter your name';
+                        } else
+                          return null;
+                      },
+                      onSaved: (val) {
+                        setState(() {
+                          _name = val;
+                        });
+                      },
+                    ),
+
+                    TextFormField(autocorrect: false,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(labelText: 'Apellido'),
+                      validator: (val) {
+                        if (val.isEmpty) {
+                          return 'Please enter your last name';
+                        } else
+                          return null;
+                      },
+                      onSaved: (val) {
+                        setState(() {
+                          _lastname = val;
+                        });
+                      },
+                    ),
+
+                    TextFormField(autocorrect: false,
+                      keyboardType: TextInputType.datetime,
+                      decoration: InputDecoration(labelText: 'Fecha de nacimiento'),
+                      validator: (val) {
+                        if (val.isEmpty) {
+                          return 'Please enter your birth';
+                        } else
+                          return null;
+                      },
+                      onSaved: (val) {
+                        setState(() {
+                          _born = val;
+                        });
+                      },
+                    ),
+
+                    TextFormField(autocorrect: false,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(labelText: 'Ciudad'),
+                      validator: (val) {
+                        if (val.isEmpty) {
+                          return 'Please enter your city';
+                        } else
+                          return null;
+                      },
+                      onSaved: (val) {
+                        setState(() {
+                          _city = val;
+                        });
+                      },
+                    ),
+
+
+
+
+                    Padding(
                     padding: EdgeInsets.symmetric(vertical: 20.0),
                     child: Text('Welcome to GymTastic!', style: TextStyle(
                         color: Color.fromARGB(255, 200, 200, 200)),),
