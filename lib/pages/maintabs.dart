@@ -24,18 +24,18 @@ class MainTabsPage extends StatelessWidget {
             child: Container(
               height: 60.0,
               child: TabBar(
-                labelColor: Theme.of(context).primaryColor,
+                labelColor: Theme.of(context).toggleableActiveColor,
                 labelStyle: TextStyle(fontSize: 10.0),
                 tabs: <Widget>[
                   Tab(
-//                      icon: Icon(Icons.),
-                      text: 'PARAVOS',),
+                      icon: Icon(Icons.timeline,size: 35,),
+                      text: 'Progreso',),
                   Tab(
-//                    icon: Icon(Icons.list),
-                    text: 'PLAN',),
+                    icon: Icon(Icons.fitness_center,size: 35,),
+                    text: 'Actividad',),
                   Tab(
-//                      icon: Icon(Icons.),
-                    text: 'HORARIOS',)
+                      icon: Icon(Icons.settings,size: 35,),
+                    text: 'Ajustes',)
                 ],
               ),
             ),),
