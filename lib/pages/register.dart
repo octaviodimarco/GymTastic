@@ -76,10 +76,7 @@ class _RegisterPageState extends State<RegisterPage> {
               key: _formKey,
               child: ListView(
                 children: <Widget>[
-                  FlutterLogo(
-                    style: FlutterLogoStyle.horizontal,
-                    size: 200.0,
-                  ),
+                  Image.asset('assets/logo2.jpg'),
                   TextFormField(autocorrect: false,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(labelText: 'Email'),
