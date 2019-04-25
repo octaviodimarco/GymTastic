@@ -1,19 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:gymtastic/Pages/Setup/welcome.dart';
+import 'package:gymtastic/pages/register.dart';
+import 'package:gymtastic/routes.dart';
+import 'package:gymtastic/theme.dart';
+//import 'login_page.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(new TodoApp());
 
-class MyApp extends StatelessWidget {
+class TodoApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _TodoAppState();
+
+
+}
+
+
+
+class _TodoAppState extends State<TodoApp> {
+
+  Widget rootPage = RegisterPage();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: WelcomePage(),
+      title: 'GymTastic',
+      home: rootPage,
+      routes: buildAppRoutes(),
+      theme: buildAppTheme(),
     );
   }
 }
-
 
