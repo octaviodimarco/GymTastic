@@ -81,8 +81,7 @@ class _RegisterPageState extends State<RegisterPage> {
               child: ListView(
                 children: <Widget>[
 
-                    Image.asset('assets/logo2.jpg'),
-
+                  Image.asset('assets/logo2.jpg'),
 
                   TextFormField(autocorrect: false,
                     keyboardType: TextInputType.emailAddress,
