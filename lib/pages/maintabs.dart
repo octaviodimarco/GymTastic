@@ -28,14 +28,14 @@ class MainTabsPage extends StatelessWidget {
                 labelStyle: TextStyle(fontSize: 10.0),
                 tabs: <Widget>[
                   Tab(
-                      icon: Icon(Icons.timeline,size: 35,),
-                      text: 'Progreso',),
+//                      icon: Icon(Icons.timeline,size: 35,),
+                      text: 'PARA VOS',),
                   Tab(
-                    icon: Icon(Icons.fitness_center,size: 35,),
-                    text: 'Actividad',),
+//                    icon: Icon(Icons.fitness_center,size: 35,),
+                    text: 'PLAN',),
                   Tab(
-                      icon: Icon(Icons.settings,size: 35,),
-                    text: 'Ajustes',)
+//                      icon: Icon(Icons.settings,size: 35,),
+                    text: 'HORARIOS',)
                 ],
               ),
             ),),

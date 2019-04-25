@@ -22,7 +22,7 @@ class _ParaVosPageState extends State<ParaVosPage> {
         backgroundColor: new Color(0xfffffff),
         centerTitle: false,
         elevation: 3.0,
-        leading: Image.asset("assets/Frases-Arnold-Schwarzenegger.jpg",),
+        leading: Image.asset("assets/perfil.png",),
         title: Container(height: 40, alignment: Alignment.topRight,
             child: Image.asset("assets/logo2.jpg",)),
 
