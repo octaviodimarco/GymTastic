@@ -12,7 +12,7 @@ class _PlanPageState extends State<PlanPage>{
       backgroundColor: new Color(0xfffffff),
       centerTitle: false,
       elevation: 3.0,
-      leading: Image.asset("assets/Frases-Arnold-Schwarzenegger.jpg",height: 10,),
+      leading: Image.asset("assets/perfil.png",height: 10,),
       title: Container(height: 40, alignment: Alignment.topRight,
           child: Image.asset("assets/logo2.jpg",)),
 
