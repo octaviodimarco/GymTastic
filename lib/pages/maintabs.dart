@@ -3,12 +3,13 @@ import 'package:gymtastic/pages/horarios.dart';
 import 'package:gymtastic/pages/paravos.dart';
 //import 'package:gymtastic/pages/settings.dart';
 import 'package:gymtastic/pages/plan.dart';
-
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 class MainTabsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
+
       body: DefaultTabController(
         length: 3,
           child: new Scaffold(
@@ -19,29 +20,50 @@ class MainTabsPage extends StatelessWidget {
                   HorariosPage()
                 ]
             ),
+
             bottomNavigationBar: PreferredSize(
                 preferredSize: Size(60.0, 60.0),
             child: Container(
               height: 60.0,
+
               child: TabBar(
                 labelColor: Theme.of(context).toggleableActiveColor,
                 labelStyle: TextStyle(fontSize: 10.0),
                 tabs: <Widget>[
                   Tab(
-//                      icon: Icon(Icons.timeline,size: 35,),
+
                       text: 'PARA VOS',),
                   Tab(
-//                    icon: Icon(Icons.fitness_center,size: 35,),
+
                     text: 'PLAN',),
                   Tab(
-//                      icon: Icon(Icons.settings,size: 35,),
+
                     text: 'HORARIOS',)
                 ],
               ),
             ),),
           ),
       ),
+
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.grey,
+        items: <Widget>[
+          Icon(Icons.add, size: 30),
+          Icon(Icons.list, size: 30),
+          Icon(Icons.compare_arrows, size: 30),
+        ],
+        onTap: (index) {
+          //Handle button tap
+        },
+      ),
+
+
+
     );
+
+
+
+
   }
 
 

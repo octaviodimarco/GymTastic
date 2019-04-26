@@ -80,7 +80,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             key: _formKey,
             child: ListView(
               children: <Widget>[
-                FlutterLogo(style: FlutterLogoStyle.markOnly, size: 100.0),
+                Image.asset('assets/logo2.jpg'),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 20.0),
                   child: Text(

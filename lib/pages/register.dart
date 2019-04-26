@@ -9,6 +9,17 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
 
+//  File sampleImage;
+//  Future getImage() async {
+//    var tempImage = await ImagePicker.pickImage(source: ImageSource.gallery);
+//  setState((){
+//    sampleImage = tempImage;
+//
+//  });
+//
+//  }
+
+
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   String _name;
@@ -18,7 +29,11 @@ class _RegisterPageState extends State<RegisterPage> {
   String _password;
   String _city;
 
+
+
   bool _isRegistering = false;
+
+
 
   _register() async {
     if (_isRegistering) return;
@@ -64,6 +79,9 @@ class _RegisterPageState extends State<RegisterPage> {
       });
     }
   }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -178,7 +196,12 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
 
 
-
+//                     FlatButton.icon(
+//                        onPressed: getImage,
+//
+//                        icon: Icon(Icons.account_circle), label: const Text('Imagen'),
+//
+//                    ),
 
                     Padding(
                     padding: EdgeInsets.symmetric(vertical: 20.0),
@@ -190,19 +213,60 @@ class _RegisterPageState extends State<RegisterPage> {
             )
         ),
       ),
+
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _register();
         },
-        child: Icon(Icons.person_add),
+        child: Icon(Icons.check_circle),
       ),
+
       persistentFooterButtons: <Widget>[
         FlatButton(onPressed: () {
           Navigator.of(context).pushNamed('/login');
         },
           child: Text('I already have an account'),
         )
+
       ],
     );
   }
+//
+//  Widget b(BuildContext context) {
+//    return Scaffold(
+//          body: Center(
+//            child: sampleImage == null ? Text('Select an image') : enableUpload(),
+//          ),
+//      floatingActionButton: FloatingActionButton(
+//
+//          onPressed: getImage,
+//          tooltip: 'Add Image',
+//      child: Icon(Icons.add),),
+//      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+//    );
+//
+//  }
+//
+//  Widget enableUpload() {
+//  return Container(
+//    child: Column(
+//      children: <Widget>[
+//        Image.file(sampleImage, height: 300.0, width: 300.0),
+//        RaisedButton(
+//          elevation: 7.0,
+//          child: Text('Upload'),
+//          textColor: Colors.white,
+//          color: Colors.blue,
+//          onPressed: () {
+//            final StorageReference firebaseStorageRef = FirebaseStorage.instance.ref().child('myimage.jpg');
+//            final StorageUploadTask task= firebaseStorageRef.putFile(sampleImage);
+//          },
+//        )
+//      ],
+//    ),
+//  );
+//
+//  }
+//
+
 }
