@@ -78,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
               key: _formKey,
               child: ListView(
                 children: <Widget>[
-                  Image.asset('assets/logo2.jpg'),
+                  Image.asset('assets/logo2.png'),
                   TextFormField(
                     autocorrect: false,
                     keyboardType: TextInputType.emailAddress,

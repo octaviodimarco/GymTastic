@@ -6,14 +6,14 @@ import 'package:gymtastic/routes.dart';
 import 'package:gymtastic/theme.dart';
 
 
-void main() => runApp(new TodoApp());
+void main() => runApp(new GymTasticApp());
 
-class TodoApp extends StatefulWidget {
+class GymTasticApp extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _TodoAppState();
+  State<StatefulWidget> createState() => _GymTasticAppState();
 }
 
-class _TodoAppState extends State<TodoApp> {
+class _GymTasticAppState extends State<GymTasticApp> {
   Widget _rootPage = RegisterPage();
 
   /*Esto carga la pagina principal en caso de que
@@ -26,6 +26,7 @@ class _TodoAppState extends State<TodoApp> {
   @override
   initState() {
     super.initState();
+
     getRootPage().then((Widget page) {
       setState(() {
         _rootPage = page;
@@ -44,3 +45,5 @@ class _TodoAppState extends State<TodoApp> {
     );
   }
 }
+
+

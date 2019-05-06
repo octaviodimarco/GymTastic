@@ -80,7 +80,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             key: _formKey,
             child: ListView(
               children: <Widget>[
-                Image.asset('assets/logo2.jpg'),
+                Image.asset('assets/logo2.png'),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 20.0),
                   child: Text(

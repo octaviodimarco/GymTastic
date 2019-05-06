@@ -1,6 +1,76 @@
 import 'package:flutter/material.dart';
 import 'package:gymtastic/behaviors/hiddenScrollBehavior.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:gymtastic/ui/blur_background.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
+
+class SignInPage extends StatefulWidget {
+  @override
+  _SignInPageState createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<SignInPage> {
+  _signInWithGoogle() async {
+    try {
+      final googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) return;
+      final googleAuth = await googleUser.authentication;
+      final credential = GoogleAuthProvider.getCredential(
+          accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+      final firebaseUser =
+      await FirebaseAuth.instance.signInWithCredential(credential);
+      print('Signed in as: ' + firebaseUser.displayName);
+      await Navigator.of(context)
+          .pushReplacementNamed('/maintabs');
+    } catch (e) {
+      print(e);
+    }
+  }
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Sign in'),
+      ),
+      body: Container(
+        padding: EdgeInsets.all(32.0),
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              FlutterLogo(
+                size: 150,
+              ),
+              Padding(
+                padding: EdgeInsets.all(32),
+                child: Text(
+                  'Firebase Auth + Google Auth',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+
+
+
+//              RaisedButton.icon(
+//                icon: Icon(FontAwesomeIcons.google),
+//                label: Text('Sign in with Google'),
+//                onPressed: _signInWithGoogle,
+//                color: Theme.of(context).primaryColor,
+//                textColor: Colors.white,
+//              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -9,15 +79,9 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
 
-//  File sampleImage;
-//  Future getImage() async {
-//    var tempImage = await ImagePicker.pickImage(source: ImageSource.gallery);
-//  setState((){
-//    sampleImage = tempImage;
-//
-//  });
-//
-//  }
+
+
+
 
 
   final _formKey = GlobalKey<FormState>();
@@ -29,10 +93,25 @@ class _RegisterPageState extends State<RegisterPage> {
   String _password;
   String _city;
 
-
-
   bool _isRegistering = false;
 
+
+  _signInWithGoogle() async {
+    try {
+      final googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) return;
+      final googleAuth = await googleUser.authentication;
+      final credential = GoogleAuthProvider.getCredential(
+          accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+      final firebaseUser =
+      await FirebaseAuth.instance.signInWithCredential(credential);
+      print('Signed in as: ' + firebaseUser.displayName);
+      await Navigator.of(context)
+          .pushReplacementNamed('/maintabs');
+    } catch (e) {
+      print(e);
+    }
+  }
 
 
   _register() async {
@@ -66,7 +145,7 @@ class _RegisterPageState extends State<RegisterPage> {
       _scaffoldKey.currentState.hideCurrentSnackBar();
       _scaffoldKey.currentState.showSnackBar(SnackBar(
         content: Text(e.message),
-      duration: Duration(seconds: 10),
+        duration: Duration(seconds: 10),
         action: SnackBarAction(
             label: 'Dismiss',
             onPressed: () {
@@ -80,26 +159,34 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
-
-
-
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
+
       key: _scaffoldKey,
-      appBar: AppBar(
-        title: Text('Register'),
-      ),
+//      appBar: AppBar(
+//
+//        title: Text('Register'),
+//
+//      ),
+
       body: Container(
+
+
+
+
         padding: EdgeInsets.all(20.0),
         child: ScrollConfiguration(
             behavior: HiddenScrollBehavior(),
             child: Form(
               key: _formKey,
               child: ListView(
-                children: <Widget>[
+                children:
 
-                  Image.asset('assets/logo2.jpg'),
+                <Widget>[
+
+                  Image.asset('assets/logo2.png'),
 
                   TextFormField(autocorrect: false,
                     keyboardType: TextInputType.emailAddress,
@@ -131,80 +218,118 @@ class _RegisterPageState extends State<RegisterPage> {
                     },
                   ),
 
-                    TextFormField(autocorrect: false,
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(labelText: 'Nombre'),
-                      validator: (val) {
-                        if (val.isEmpty) {
-                          return 'Please enter your name';
-                        } else
-                          return null;
-                      },
-                      onSaved: (val) {
-                        setState(() {
-                          _name = val;
-                        });
-                      },
+                  TextFormField(autocorrect: false,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(labelText: 'Nombre'),
+                    validator: (val) {
+                      if (val.isEmpty) {
+                        return 'Please enter your name';
+                      } else
+                        return null;
+                    },
+                    onSaved: (val) {
+                      setState(() {
+                        _name = val;
+                      });
+                    },
+                  ),
+
+                  TextFormField(autocorrect: false,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(labelText: 'Apellido'),
+                    validator: (val) {
+                      if (val.isEmpty) {
+                        return 'Please enter your last name';
+                      } else
+                        return null;
+                    },
+                    onSaved: (val) {
+                      setState(() {
+                        _lastname = val;
+                      });
+                    },
+                  ),
+
+                  TextFormField(autocorrect: false,
+                    keyboardType: TextInputType.datetime,
+                    decoration: InputDecoration(labelText: 'Fecha de nacimiento'),
+                    validator: (val) {
+                      if (val.isEmpty) {
+                        return 'Please enter your birth';
+                      } else
+                        return null;
+                    },
+                    onSaved: (val) {
+                      setState(() {
+                        _born = val;
+                      });
+                    },
+                  ),
+
+                  TextFormField(autocorrect: false,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(labelText: 'Ciudad'),
+                    validator: (val) {
+                      if (val.isEmpty) {
+                        return 'Please enter your city';
+                      } else
+                        return null;
+                    },
+                    onSaved: (val) {
+                      setState(() {
+                        _city = val;
+                      });
+                    },
+                  ),
+
+                  Separator,
+
+
+              //Boton de ingreso con Google
+              Container(
+
+                width: 300,
+                height: 50,
+                margin: EdgeInsets.only(top: 26),
+                child: FlatButton.icon(
+                  icon: Icon(FontAwesomeIcons.google),
+                  label: Text('Google'),
+                  onPressed: () {_signInWithGoogle();},
+                  color: Colors.red,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(5),
                     ),
+                  ),
+                  textColor: Colors.white,
+                ),
+              ),
 
-                    TextFormField(autocorrect: false,
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(labelText: 'Apellido'),
-                      validator: (val) {
-                        if (val.isEmpty) {
-                          return 'Please enter your last name';
-                        } else
-                          return null;
-                      },
-                      onSaved: (val) {
-                        setState(() {
-                          _lastname = val;
-                        });
-                      },
-                    ),
+              Separator2,
 
-                    TextFormField(autocorrect: false,
-                      keyboardType: TextInputType.datetime,
-                      decoration: InputDecoration(labelText: 'Fecha de nacimiento'),
-                      validator: (val) {
-                        if (val.isEmpty) {
-                          return 'Please enter your birth';
-                        } else
-                          return null;
-                      },
-                      onSaved: (val) {
-                        setState(() {
-                          _born = val;
-                        });
-                      },
-                    ),
-
-                    TextFormField(autocorrect: false,
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(labelText: 'Ciudad'),
-                      validator: (val) {
-                        if (val.isEmpty) {
-                          return 'Please enter your city';
-                        } else
-                          return null;
-                      },
-                      onSaved: (val) {
-                        setState(() {
-                          _city = val;
-                        });
-                      },
-                    ),
+              //Boton de ingreso con Facebook
+              Container(
+                width: 300,
+                height: 50,
+                margin: EdgeInsets.only(top: 26),
+                child: FlatButton.icon(
+                  icon: Icon(FontAwesomeIcons.facebook),
+                  onPressed: () {},
+                  label: Text('Facebook'),
+                  color: Color.fromARGB(255, 37, 71, 155),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                  ),
+                  textColor: Colors.white,
+                ),
+              ),
 
 
-//                     FlatButton.icon(
-//                        onPressed: getImage,
-//
-//                        icon: Icon(Icons.account_circle), label: const Text('Imagen'),
-//
-//                    ),
 
-                    Padding(
+
+                  Padding(
                     padding: EdgeInsets.symmetric(vertical: 20.0),
+
                     child: Text('Welcome to GymTastic!', style: TextStyle(
                         color: Color.fromARGB(255, 200, 200, 200)),),
                   )
@@ -213,60 +338,160 @@ class _RegisterPageState extends State<RegisterPage> {
             )
         ),
       ),
-
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _register();
         },
-        child: Icon(Icons.check_circle),
+        child: Icon(Icons.person_add),
       ),
-
       persistentFooterButtons: <Widget>[
         FlatButton(onPressed: () {
           Navigator.of(context).pushNamed('/login');
         },
           child: Text('I already have an account'),
         )
-
       ],
     );
   }
-//
-//  Widget b(BuildContext context) {
-//    return Scaffold(
-//          body: Center(
-//            child: sampleImage == null ? Text('Select an image') : enableUpload(),
-//          ),
-//      floatingActionButton: FloatingActionButton(
-//
-//          onPressed: getImage,
-//          tooltip: 'Add Image',
-//      child: Icon(Icons.add),),
-//      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-//    );
-//
-//  }
-//
-//  Widget enableUpload() {
-//  return Container(
-//    child: Column(
-//      children: <Widget>[
-//        Image.file(sampleImage, height: 300.0, width: 300.0),
-//        RaisedButton(
-//          elevation: 7.0,
-//          child: Text('Upload'),
-//          textColor: Colors.white,
-//          color: Colors.blue,
-//          onPressed: () {
-//            final StorageReference firebaseStorageRef = FirebaseStorage.instance.ref().child('myimage.jpg');
-//            final StorageUploadTask task= firebaseStorageRef.putFile(sampleImage);
-//          },
-//        )
-//      ],
-//    ),
-//  );
-//
-//  }
-//
-
 }
+
+
+
+
+var facebookSignInButton = Container(
+  width: 300,
+  height: 50,
+  margin: EdgeInsets.only(top: 26),
+  child: FlatButton.icon(
+    icon: Icon(FontAwesomeIcons.facebook),
+    onPressed: () {},
+    label: Text('Facebook'),
+    color: Color.fromARGB(255, 37, 71, 155),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(5)),
+    ),
+    textColor: Colors.white,
+  ),
+);
+
+
+
+var googleSignInButton = Container(
+
+  width: 300,
+  height: 50,
+  margin: EdgeInsets.only(top: 26),
+  child: FlatButton.icon(
+    icon: Icon(FontAwesomeIcons.google),
+    label: Text('Google'),
+    onPressed: () {},
+    color: Colors.red,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(5),
+      ),
+    ),
+    textColor: Colors.white,
+  ),
+);
+
+var Separator = Container(
+  width: 312,
+  height: 17,
+  margin: EdgeInsets.only(top: 26),
+  child: Stack(
+    fit: StackFit.expand,
+    children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "or Sign In using",
+            style: TextStyle(
+              color: Color.fromARGB(255, 156, 156, 156),
+              fontSize: 14,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+      Row(
+        children: [
+          Container(
+            width: 124.5,
+            height: 1,
+            decoration: BoxDecoration(
+              color: Color.fromARGB(255, 156, 156, 156),
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  width: 124.5,
+                  height: 1,
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 156, 156, 156),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    ],
+  ),
+);
+
+
+var Separator2 = Container(
+  width: 312,
+  height: 17,
+  margin: EdgeInsets.only(top: 26),
+  child: Stack(
+    fit: StackFit.expand,
+    children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "or",
+            style: TextStyle(
+              color: Color.fromARGB(255, 156, 156, 156),
+              fontSize: 14,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+      Row(
+        children: [
+          Container(
+            width: 124.5,
+            height: 1,
+            decoration: BoxDecoration(
+              color: Color.fromARGB(255, 156, 156, 156),
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  width: 124.5,
+                  height: 1,
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 156, 156, 156),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    ],
+  ),
+);
