@@ -96,7 +96,8 @@ class MainTabsPage extends StatelessWidget {
               ListTile(
                 title: Text("Close"),
                 trailing: Icon(Icons.close),
-                onTap: ()=> Navigator.of(context).pop(),
+                onTap: () {
+                  Navigator.of(context).pushNamed('/settings');},
 
               ),
               new Divider(),
