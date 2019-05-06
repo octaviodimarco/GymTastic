@@ -23,6 +23,18 @@ dependencies:
 
   firebase_auth: ^0.8.4+2
   cloud_firestore: ^0.9.13
+  curved_navigation_bar: ^0.1.2
+  google_sign_in: ^3.2.4
+  rxdart: 0.20.0
+  font_awesome_flutter: any
+
+  firebase_core: ^0.3.0
+  firebase_analytics: ^1.0.4
+
+  firebase_storage:
+  image_picker:
+
+  flutter_auth_buttons:
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -32,6 +44,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+
+  simple_auth_generator:
 
 
 # For information on the generic Dart part of this file, see the
@@ -48,6 +63,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - logo2.jpg
+    - logo2.png
+    - trees.jpg
     - perfil.png
   fonts:
     - family: Montserrat
