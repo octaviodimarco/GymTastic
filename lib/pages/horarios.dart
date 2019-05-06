@@ -8,15 +8,7 @@ class HorariosPage extends StatefulWidget {
 class _HorariosPageState extends State<HorariosPage>{
   @override
   Widget build(BuildContext context) {
-    return Scaffold (appBar: AppBar(
-      backgroundColor: new Color(0xfffffff),
-      centerTitle: false,
-      elevation: 3.0,
-      leading: Image.asset("assets/perfil.png",height: 10,),
-      title: Container(height: 40, alignment: Alignment.topRight,
-          child: Image.asset("assets/logo2.jpg",)),
-
-    ),
+    return Scaffold (
       body: Center(child: Text("En construccion"),
       ),
     );

@@ -5,7 +5,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:gymtastic/ui/blur_background.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
+
 
 class SignInPage extends StatefulWidget {
   @override
@@ -112,6 +112,48 @@ class _RegisterPageState extends State<RegisterPage> {
       print(e);
     }
   }
+
+
+
+//  _signInWithFacebook() async {
+//    final facebookLogin = new FacebookLogin();
+//    final result = await facebookLogin.logInWithReadPermissions(['email']);
+//    switch (result.status) {
+//      case FacebookLoginStatus.loggedIn:
+//        print(result.accessToken.token);
+//        break;
+//      case FacebookLoginStatus.cancelledByUser:
+//        print('Canceled by user');
+//        break;
+//      case FacebookLoginStatus.error:
+//        print(result.errorMessage);
+//        break;
+//
+//    }
+//
+//  }
+
+//  FirebaseAuth _auth = FirebaseAuth.instance;
+//
+//  Future<FirebaseUser> _loginWithFacebook() async {
+//
+//    var facebookLogin = new FacebookLogin();
+//    var result = await facebookLogin.logInWithReadPermissions(['email']);
+//
+//    debugPrint(result.status.toString());
+//
+//    if (result.status == FacebookLoginStatus.loggedIn) {
+//      FirebaseUser user =
+//      await _auth.signInWithFacebook(accessToken: result.accessToken.token);
+//      return user;
+//    }
+//    return null;
+//
+//  }
+
+
+
+
 
 
   _register() async {
