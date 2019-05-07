@@ -69,6 +69,13 @@ flutter:
     - logo2.png
     - trees.jpg
     - perfil.png
+    - gym1.jpg
+    - gym2.jpg
+    - gym3.jpg
+    - gym4.jpg
+    - gym5.jpg
+    - gym6.jpg
+
   fonts:
     - family: Montserrat
       fonts:
