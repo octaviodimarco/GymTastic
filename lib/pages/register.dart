@@ -7,10 +7,18 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
 
+
+
 class SignInPage extends StatefulWidget {
+  
+  
   @override
   _SignInPageState createState() => _SignInPageState();
 }
+
+
+
+
 
 class _SignInPageState extends State<SignInPage> {
   _signInWithGoogle() async {
@@ -32,12 +40,12 @@ class _SignInPageState extends State<SignInPage> {
 
 
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Sign in'),
-      ),
+  
       body: Container(
         padding: EdgeInsets.all(32.0),
         child: Center(
@@ -72,7 +80,7 @@ class _SignInPageState extends State<SignInPage> {
 }
 
 
-class RegisterPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget { 
   @override
   State<StatefulWidget> createState() => _RegisterPageState();
 }
@@ -207,11 +215,6 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
 
       key: _scaffoldKey,
-//      appBar: AppBar(
-//
-//        title: Text('Register'),
-//
-//      ),
 
       body: Container(
 
@@ -292,21 +295,27 @@ class _RegisterPageState extends State<RegisterPage> {
                     },
                   ),
 
-                  TextFormField(autocorrect: false,
-                    keyboardType: TextInputType.datetime,
-                    decoration: InputDecoration(labelText: 'Fecha de nacimiento'),
-                    validator: (val) {
-                      if (val.isEmpty) {
-                        return 'Please enter your birth';
-                      } else
-                        return null;
-                    },
-                    onSaved: (val) {
-                      setState(() {
-                        _born = val;
-                      });
-                    },
-                  ),
+
+                
+                  
+                  // TextFormField(autocorrect: false,
+                  //   keyboardType: TextInputType.datetime,
+                  //   decoration: InputDecoration(labelText: 'Fecha de nacimiento'),
+                  
+
+                    
+                  //   validator: (val) {
+                  //     if (val.isEmpty) {
+                  //       return 'Please enter your birth';
+                  //     } else
+                  //       return null;
+                  //   },
+                  //   onSaved: (val) {
+                  //     setState(() {
+                  //       _born = val;
+                  //     });
+                  //   },
+                  // ),
 
                   TextFormField(autocorrect: false,
                     keyboardType: TextInputType.text,
@@ -323,6 +332,50 @@ class _RegisterPageState extends State<RegisterPage> {
                       });
                     },
                   ),
+
+
+               
+                    
+
+
+          //       Container(
+          //         child: ListView(
+          //           children: <Widget>[
+          //             Text('Format: "${formats[inputType].pattern}"'),
+
+          //   //
+          //   // The widget.
+          //   //
+          //   DateTimePickerFormField(
+          //     inputType: inputType,
+          //     format: formats[inputType],
+          //     editable: editable,
+          //     decoration: InputDecoration(
+          //         labelText: 'Date/Time', hasFloatingPlaceholder: false),
+          //     onChanged: (dt) => setState(() => date = dt),
+          //   ),
+
+          //   Text('Date value: $date'),
+          //   SizedBox(height: 16.0),
+          //   CheckboxListTile(
+          //     title: Text('Date picker'),
+          //     value: inputType != InputType.time,
+          //     onChanged: (value) => updateInputType(date: value),
+          //   ),
+          //   CheckboxListTile(
+          //     title: Text('Time picker'),
+          //     value: inputType != InputType.date,
+          //     onChanged: (value) => updateInputType(time: value),
+          //   ),
+          //   CheckboxListTile(
+          //     title: Text('Editable'),
+          //     value: editable,
+          //     onChanged: (value) => setState(() => editable = value),
+          //   ),
+          // ],
+                    
+          //         ),
+          //       ),
 
                   Separator,
 
@@ -347,24 +400,24 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
 
-              Separator2,
+              // Separator2,
 
-              //Boton de ingreso con Facebook
-              Container(
-                width: 300,
-                height: 50,
-                margin: EdgeInsets.only(top: 26),
-                child: FlatButton.icon(
-                  icon: Icon(FontAwesomeIcons.facebook),
-                  onPressed: () {},
-                  label: Text('Facebook'),
-                  color: Color.fromARGB(255, 37, 71, 155),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                  ),
-                  textColor: Colors.white,
-                ),
-              ),
+              // //Boton de ingreso con Facebook
+              // Container(
+              //   width: 300,
+              //   height: 50,
+              //   margin: EdgeInsets.only(top: 26),
+              //   child: FlatButton.icon(
+              //     icon: Icon(FontAwesomeIcons.facebook),
+              //     onPressed: () {},
+              //     label: Text('Facebook'),
+              //     color: Color.fromARGB(255, 37, 71, 155),
+              //     shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.all(Radius.circular(5)),
+              //     ),
+              //     textColor: Colors.white,
+              //   ),
+              // ),
 
 
 
