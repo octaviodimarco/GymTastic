@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:gymtastic/behaviors/hiddenScrollBehavior.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -5,6 +8,16 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:gymtastic/ui/blur_background.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+
+// final FirebaseApp app= FirebaseApp (
+//   options: FirebaseOptions(
+//     googleAppID: '',
+//     apiKey: '',
+//     databaseURL: 'https://gymtastic-b8d89.firebaseio.com',
+//   )
+// );
 
 
 
@@ -89,6 +102,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
 
 
+  
+
 
 
 
@@ -101,7 +116,101 @@ class _RegisterPageState extends State<RegisterPage> {
   String _password;
   String _city;
 
+
   bool _isRegistering = false;
+
+
+
+
+
+
+/*
+  ____    _  _____  _    ____    _    ____  _____ 
+ |  _ \  / \|_   _|/ \  | __ )  / \  / ___|| ____|
+ | | | |/ _ \ | | / _ \ |  _ \ / _ \ \___ \|  _|  
+ | |_| / ___ \| |/ ___ \| |_) / ___ \ ___) | |___ 
+ |____/_/   \_\_/_/   \_\____/_/   \_\____/|_____|                                                
+*/
+  final DocumentReference documentReference= Firestore.instance.document("myData/dummy");
+  
+  String Prueba = null;
+  StreamSubscription<DocumentSnapshot> subscription;
+
+  void _add() {
+    Map<String,String> data = <String, String> {
+      "name": "Octavio",
+      "desc":"CEO"
+
+    };
+    documentReference.setData(data).whenComplete((){
+        print("Document Added");
+    }).catchError((e) => print(e));
+  }
+
+
+
+  void _update() {
+    Map<String,String> data = <String, String> {
+      "name": "Octavio Updated",
+      "desc":"CEO Updated"
+
+    };
+    documentReference.updateData(data).whenComplete((){
+        print("Document Updated");
+    }).catchError((e) => print(e));
+  }
+
+  void _fetch() {
+    documentReference.get().then((datasnapshot){
+        if(datasnapshot.exists){
+          setState(() {
+            Prueba = datasnapshot.data['desc'];
+          });
+          
+        }
+    });
+  }
+
+
+  void _delete(){
+    documentReference.delete().whenComplete((){
+      print("Deleted Successfully");
+      setState((){});
+    }).catchError((e) => print(e));
+
+  }
+
+
+
+
+@override
+void initState(){
+    super.initState();
+    subscription = documentReference.snapshots().listen((datasnapshot){
+if (datasnapshot.exists){
+          setState(() {
+            Prueba = datasnapshot.data['desc'];
+          });
+          
+        }
+    });
+  }
+
+@override 
+  void dispose(){
+    super.dispose();
+    subscription?.cancel();
+  }
+
+
+/* 
+   ____  ___   ___   ____ _     _____    ____ ___ ____ _   _    ___ _   _ 
+  / ___|/ _ \ / _ \ / ___| |   | ____|  / ___|_ _/ ___| \ | |  |_ _| \ | |
+ | |  _| | | | | | | |  _| |   |  _|    \___ \| | |  _|  \| |   | ||  \| |
+ | |_| | |_| | |_| | |_| | |___| |___    ___) | | |_| | |\  |   | || |\  |
+  \____|\___/ \___/ \____|_____|_____|  |____/___\____|_| \_|  |___|_| \_|
+                                                                          
+*/
 
 
   _signInWithGoogle() async {
@@ -120,48 +229,6 @@ class _RegisterPageState extends State<RegisterPage> {
       print(e);
     }
   }
-
-
-
-//  _signInWithFacebook() async {
-//    final facebookLogin = new FacebookLogin();
-//    final result = await facebookLogin.logInWithReadPermissions(['email']);
-//    switch (result.status) {
-//      case FacebookLoginStatus.loggedIn:
-//        print(result.accessToken.token);
-//        break;
-//      case FacebookLoginStatus.cancelledByUser:
-//        print('Canceled by user');
-//        break;
-//      case FacebookLoginStatus.error:
-//        print(result.errorMessage);
-//        break;
-//
-//    }
-//
-//  }
-
-//  FirebaseAuth _auth = FirebaseAuth.instance;
-//
-//  Future<FirebaseUser> _loginWithFacebook() async {
-//
-//    var facebookLogin = new FacebookLogin();
-//    var result = await facebookLogin.logInWithReadPermissions(['email']);
-//
-//    debugPrint(result.status.toString());
-//
-//    if (result.status == FacebookLoginStatus.loggedIn) {
-//      FirebaseUser user =
-//      await _auth.signInWithFacebook(accessToken: result.accessToken.token);
-//      return user;
-//    }
-//    return null;
-//
-//  }
-
-
-
-
 
 
   _register() async {
@@ -210,6 +277,10 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   @override
+
+  
+
+
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -273,6 +344,15 @@ class _RegisterPageState extends State<RegisterPage> {
                         return null;
                     },
                     onSaved: (val) {
+                    
+        
+                       Map<String,String> data = <String, String>{
+                         "name": val,
+                       };
+                       documentReference.setData(data).whenComplete((){
+                         print("Document Added");
+    }).catchError((e) => print(e));
+                    
                       setState(() {
                         _name = val;
                       });
@@ -377,6 +457,23 @@ class _RegisterPageState extends State<RegisterPage> {
           //         ),
           //       ),
 
+                  
+                  DropdownButton<String>(
+  items: <String>['Alummo', 'Profesor'].map((String value) {
+    return new DropdownMenuItem<String>(
+      value: value,
+      child: new Text(value),
+    );
+  }).toList(),
+  onChanged: (_) {},
+  hint: Text(
+    "Por favor seleccione el tipo de usuario"
+  ),
+),
+
+                  
+
+
                   Separator,
 
 
@@ -421,7 +518,6 @@ class _RegisterPageState extends State<RegisterPage> {
 
 
 
-
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 20.0),
 
@@ -453,21 +549,21 @@ class _RegisterPageState extends State<RegisterPage> {
 
 
 
-var facebookSignInButton = Container(
-  width: 300,
-  height: 50,
-  margin: EdgeInsets.only(top: 26),
-  child: FlatButton.icon(
-    icon: Icon(FontAwesomeIcons.facebook),
-    onPressed: () {},
-    label: Text('Facebook'),
-    color: Color.fromARGB(255, 37, 71, 155),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(5)),
-    ),
-    textColor: Colors.white,
-  ),
-);
+// var facebookSignInButton = Container(
+//   width: 300,
+//   height: 50,
+//   margin: EdgeInsets.only(top: 26),
+//   child: FlatButton.icon(
+//     icon: Icon(FontAwesomeIcons.facebook),
+//     onPressed: () {},
+//     label: Text('Facebook'),
+//     color: Color.fromARGB(255, 37, 71, 155),
+//     shape: RoundedRectangleBorder(
+//       borderRadius: BorderRadius.all(Radius.circular(5)),
+//     ),
+//     textColor: Colors.white,
+//   ),
+// );
 
 
 

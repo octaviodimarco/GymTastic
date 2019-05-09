@@ -21,8 +21,9 @@ class _ParaVosPageState extends State<ParaVosPage> {
       // This next line does the trick.
       children: <Widget>[
       new SizedBox(
-      height: 15.0,
-      child: Text("NUEVOS ENTRENAMIENTOS",),
+      height: 25.0,
+      child: Text("NUEVOS ENTRENAMIENTOS",
+      style: TextStyle(fontSize: 20.0),),
     ),
     new Container(
     height: 250.0,
@@ -74,8 +75,9 @@ class _ParaVosPageState extends State<ParaVosPage> {
     ),
 
     new SizedBox(
-    height: 15.0,
-    child: Text("OTRAS ACTIVIDADES DEL GYM"),
+    height: 25.0,
+    child: Text("OTRAS ACTIVIDADES DEL GYM",
+    style: TextStyle(fontSize: 20.0),),
     ),
     new Container(
     height: 250.0,
