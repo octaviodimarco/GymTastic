@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:unicorndial/unicorndial.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:gymtastic/pages/Clock/mainstopwatch.dart';
 
 class PlanPage extends StatefulWidget {
   @override
@@ -10,9 +14,67 @@ class _PlanPageState extends State<PlanPage>{
   bool checkBoxState = false;
   @override
   Widget build(BuildContext context) {
+
+    var childButtons = List<UnicornButton>();
+
+    childButtons.add(UnicornButton(
+      hasLabel: true,
+      labelText: "StopWatch",
+      currentButton: FloatingActionButton(
+        heroTag: "train",
+        backgroundColor: Colors.redAccent,
+        mini: true,
+        child: Icon(Icons.train),
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return MyHomePage();
+          }));
+          
+        },
+      ),
+
+    ));
+
+    childButtons.add(UnicornButton(
+        currentButton: FloatingActionButton(
+            heroTag: "airplane",
+            backgroundColor: Colors.greenAccent,
+            mini: true,
+            child: Icon(Icons.airplanemode_active),
+            onPressed: (){
+              Navigator.of(context).pushNamed('/profile');
+            },
+            )));
+
+    childButtons.add(UnicornButton(
+        currentButton: FloatingActionButton(
+            heroTag: "directions",
+            backgroundColor: Colors.blueAccent,
+            mini: true,
+            child: Icon(Icons.directions_car),
+            onPressed: (){},)));
+
+
     return Scaffold (
-      body: ListView(
+
+ floatingActionButton: UnicornDialer(
+            backgroundColor: Color.fromRGBO(255, 255, 255, 0.6),
+            parentButtonBackground: Colors.redAccent,
+            orientation: UnicornOrientation.VERTICAL,
+            parentButton: Icon(FontAwesomeIcons.clock),
+            childButtons: childButtons),
+      
+
+
+    
+
+
+      body: 
+      
+      
+      ListView(
         children: <Widget>[
+         
           new Container(
             color: Colors.grey[400],
             padding: new EdgeInsets.only(top: 25.0),
@@ -214,8 +276,12 @@ class _PlanPageState extends State<PlanPage>{
 
         ],
 
-      )
+      ),
+      
+      
         );
+
+       
   }
 
   void something(){
