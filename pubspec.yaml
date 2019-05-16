@@ -80,7 +80,14 @@ flutter:
     - gym5.jpg
     - gym6.jpg
     - perfildefault.png
+    - gym.gif
+    - gym1.gif
+    - gym2.gif
+    - gym3.gif
   fonts:
     - family: Montserrat
       fonts:
         - asset: fonts/Montserrat-Regular.ttf
+    - family: Delirium
+      fonts:
+        - asset: fonts/font1.ttf

@@ -38,22 +38,22 @@ class _PlanPageState extends State<PlanPage>{
               new Container(
                   height: 140, width: 140,
                 margin: const EdgeInsets.all(10.0),
-              child: Image.asset("assets/gym1.jpg", height: 100.0, width: 100.0, )
+              child: new Image(image: new AssetImage("assets/gym.gif"))
               ),
 
               new Container(
                 height: 140, width: 140,
-                  padding: new EdgeInsets.only(top: 25.0),
+                  padding: new EdgeInsets.only(top: 60.0),
                   //margin: const EdgeInsets.all(10.0),
-                child: Text("Deberas poder solventar esta actividad sin problemas", textAlign: TextAlign.center, style: new TextStyle(
-                  fontFamily: "Arial",
+                child: Text("- 4 Repeticiones de 10 cada una", textAlign: TextAlign.center, style: new TextStyle(
+                  fontFamily: "Montserrat",
                   fontStyle: FontStyle.italic,
                   fontSize: 14.0,
                 ),)
 
               ),
               new Container(
-                height: 70, width: 25,
+                height: 70, width: 55,
                 padding: new EdgeInsets.only(top: 5.0),
                 child:Checkbox(onChanged: (bool e) => something(),
                 value: checkBoxState),
@@ -65,27 +65,28 @@ class _PlanPageState extends State<PlanPage>{
               )
             ],
           ),
+          new Divider(),
           new Row(
             children: [
               new Container(
                   height: 140, width: 140,
                 margin: const EdgeInsets.all(10.0),
-              child: Image.asset("assets/gym1.jpg", height: 100.0, width: 100.0, )
+              child: new Image(image: new AssetImage("assets/gym1.gif"))
               ),
 
               new Container(
                 height: 140, width: 140,
-                  padding: new EdgeInsets.only(top: 25.0),
+                  padding: new EdgeInsets.only(top: 60.0),
                   //margin: const EdgeInsets.all(10.0),
-                child: Text("Deberas poder solventar esta actividad sin problemas", textAlign: TextAlign.center, style: new TextStyle(
-                  fontFamily: "Arial",
+                child: Text("5 Repeticiones de 15 cada una", textAlign: TextAlign.center, style: new TextStyle(
+                  fontFamily: "Montserrat",
                   fontStyle: FontStyle.italic,
                   fontSize: 14.0,
                 ),)
 
               ),
               new Container(
-                height: 70, width: 25,
+                height: 70, width: 55,
                 padding: new EdgeInsets.only(top: 5.0),
                 child:Checkbox(onChanged: (bool e) => something1(),
                 value: checkBoxState1),
@@ -97,27 +98,28 @@ class _PlanPageState extends State<PlanPage>{
               )
             ],
           ),
+          new Divider(),
          new Row(
             children: [
               new Container(
                   height: 140, width: 140,
                 margin: const EdgeInsets.all(10.0),
-              child: Image.asset("assets/gym1.jpg", height: 100.0, width: 100.0, )
+              child: new Image(image: new AssetImage("assets/gym2.gif"))
               ),
 
               new Container(
                 height: 140, width: 140,
-                  padding: new EdgeInsets.only(top: 25.0),
+                  padding: new EdgeInsets.only(top: 60.0),
                   //margin: const EdgeInsets.all(10.0),
-                child: Text("Deberas poder solventar esta actividad sin problemas", textAlign: TextAlign.center, style: new TextStyle(
-                  fontFamily: "Arial",
+                child: Text("10 repeticiones de 6 cada una", textAlign: TextAlign.center, style: new TextStyle(
+                  fontFamily: "Montserrat",
                   fontStyle: FontStyle.italic,
                   fontSize: 14.0,
                 ),)
 
               ),
               new Container(
-                height: 70, width: 25,
+                height: 70, width: 55,
                 padding: new EdgeInsets.only(top: 5.0),
                 child:Checkbox(onChanged: (bool e) => something2(),
                 value: checkBoxState2),
@@ -129,27 +131,28 @@ class _PlanPageState extends State<PlanPage>{
               )
             ],
           ),
+          new Divider(),
           new Row(
             children: [
               new Container(
                   height: 140, width: 140,
                 margin: const EdgeInsets.all(10.0),
-              child: Image.asset("assets/gym1.jpg", height: 100.0, width: 100.0, )
+              child: new Image(image: new AssetImage("assets/gym3.gif"))
               ),
 
               new Container(
                 height: 140, width: 140,
-                  padding: new EdgeInsets.only(top: 25.0),
+                  padding: new EdgeInsets.only(top: 60.0),
                   //margin: const EdgeInsets.all(10.0),
-                child: Text("Deberas poder solventar esta actividad sin problemas", textAlign: TextAlign.center, style: new TextStyle(
-                  fontFamily: "Arial",
+                child: Text("Dance like Ricardo all night", textAlign: TextAlign.center, style: new TextStyle(
+                  fontFamily: "Montserrat",
                   fontStyle: FontStyle.italic,
                   fontSize: 14.0,
                 ),)
 
               ),
               new Container(
-                height: 70, width: 25,
+                height: 70, width: 55,
                 padding: new EdgeInsets.only(top: 5.0),
                 child:Checkbox(onChanged: (bool e) => something3(),
                 value: checkBoxState3),
@@ -161,27 +164,28 @@ class _PlanPageState extends State<PlanPage>{
               )
             ],
           ),
+          new Divider(),
           new Row(
             children: [
               new Container(
                   height: 140, width: 140,
                 margin: const EdgeInsets.all(10.0),
-              child: Image.asset("assets/gym1.jpg", height: 100.0, width: 100.0, )
+              child: new Image(image: new AssetImage("assets/gym.gif"))
               ),
 
               new Container(
                 height: 140, width: 140,
-                  padding: new EdgeInsets.only(top: 25.0),
+                  padding: new EdgeInsets.only(top: 60.0),
                   //margin: const EdgeInsets.all(10.0),
-                child: Text("Deberas poder solventar esta actividad sin problemas", textAlign: TextAlign.center, style: new TextStyle(
-                  fontFamily: "Arial",
-                  fontStyle: FontStyle.italic,
+                child: Text("- 4 Repeticiones de 10 cada una", textAlign: TextAlign.center, style: new TextStyle(
+                  fontFamily: "Montserrat",
+                  //fontStyle: FontStyle.italic,
                   fontSize: 14.0,
                 ),)
 
               ),
               new Container(
-                height: 70, width: 25,
+                height: 70, width: 55,
                 padding: new EdgeInsets.only(top: 5.0),
                 child:Checkbox(onChanged: (bool e) => something4(),
                 value: checkBoxState4),
@@ -193,27 +197,28 @@ class _PlanPageState extends State<PlanPage>{
               )
             ],
           ),
+          new Divider(),
           new Row(
             children: [
               new Container(
                   height: 140, width: 140,
                 margin: const EdgeInsets.all(10.0),
-              child: Image.asset("assets/gym1.jpg", height: 100.0, width: 100.0, )
+              child: new Image(image: new AssetImage("assets/gym1.gif"))
               ),
 
               new Container(
                 height: 140, width: 140,
-                  padding: new EdgeInsets.only(top: 25.0),
+                  padding: new EdgeInsets.only(top: 60.0),
                   //margin: const EdgeInsets.all(10.0),
-                child: Text("Deberas poder solventar esta actividad sin problemas", textAlign: TextAlign.center, style: new TextStyle(
-                  fontFamily: "Arial",
+                child: Text("5 Repeticiones de 15 cada una", textAlign: TextAlign.center, style: new TextStyle(
+                  fontFamily: "Montserrat",
                   fontStyle: FontStyle.italic,
                   fontSize: 14.0,
                 ),)
 
               ),
               new Container(
-                height: 70, width: 25,
+                height: 70, width: 55,
                 padding: new EdgeInsets.only(top: 5.0),
                 child:Checkbox(onChanged: (bool e) => something5(),
                 value: checkBoxState5),
@@ -225,27 +230,28 @@ class _PlanPageState extends State<PlanPage>{
               )
             ],
           ),
-          new Row(
+          new Divider(),
+         new Row(
             children: [
               new Container(
                   height: 140, width: 140,
                 margin: const EdgeInsets.all(10.0),
-              child: Image.asset("assets/gym1.jpg", height: 100.0, width: 100.0, )
+              child: new Image(image: new AssetImage("assets/gym2.gif"))
               ),
 
               new Container(
                 height: 140, width: 140,
-                  padding: new EdgeInsets.only(top: 25.0),
+                  padding: new EdgeInsets.only(top: 60.0),
                   //margin: const EdgeInsets.all(10.0),
-                child: Text("Deberas poder solventar esta actividad sin problemas", textAlign: TextAlign.center, style: new TextStyle(
-                  fontFamily: "Arial",
+                child: Text("10 repeticiones de 6 cada una", textAlign: TextAlign.center, style: new TextStyle(
+                  fontFamily: "Montserrat",
                   fontStyle: FontStyle.italic,
                   fontSize: 14.0,
                 ),)
 
               ),
               new Container(
-                height: 70, width: 25,
+                height: 70, width: 55,
                 padding: new EdgeInsets.only(top: 5.0),
                 child:Checkbox(onChanged: (bool e) => something6(),
                 value: checkBoxState6),
@@ -257,27 +263,28 @@ class _PlanPageState extends State<PlanPage>{
               )
             ],
           ),
+          new Divider(),
           new Row(
             children: [
               new Container(
                   height: 140, width: 140,
                 margin: const EdgeInsets.all(10.0),
-              child: Image.asset("assets/gym1.jpg", height: 100.0, width: 100.0, )
+              child: new Image(image: new AssetImage("assets/gym3.gif"))
               ),
 
               new Container(
                 height: 140, width: 140,
-                  padding: new EdgeInsets.only(top: 25.0),
+                  padding: new EdgeInsets.only(top: 60.0),
                   //margin: const EdgeInsets.all(10.0),
-                child: Text("Deberas poder solventar esta actividad sin problemas", textAlign: TextAlign.center, style: new TextStyle(
-                  fontFamily: "Arial",
+                child: Text("Dance like Ricardo all night", textAlign: TextAlign.center, style: new TextStyle(
+                  fontFamily: "Montserrat",
                   fontStyle: FontStyle.italic,
                   fontSize: 14.0,
                 ),)
 
               ),
               new Container(
-                height: 70, width: 25,
+                height: 70, width: 55,
                 padding: new EdgeInsets.only(top: 5.0),
                 child:Checkbox(onChanged: (bool e) => something7(),
                 value: checkBoxState7),
@@ -289,10 +296,11 @@ class _PlanPageState extends State<PlanPage>{
               )
             ],
           ),
+            ],
+          ),
+  
 
-        ],
-
-      )
+      
         );
   }
 

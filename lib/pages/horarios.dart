@@ -20,19 +20,8 @@ class _HorariosPageState extends State<HorariosPage> {
   Widget build(BuildContext context) {
     return Scaffold (
       body: Center(
-        child: FlatButton(
-            onPressed: () {
-              _logout();
-              Navigator.of(context).pushReplacementNamed('/register');
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text('Log out', style: TextStyle(color: Colors.red),),
-                Spacer(),
-                Icon(Icons.exit_to_app, color: Colors.red),
-              ],
-            )),
+        child: 
+        new Image(image: new AssetImage("assets/gym3.gif"))
       ),
     );
   }
