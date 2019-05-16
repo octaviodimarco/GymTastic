@@ -26,9 +26,10 @@ class _ParaVosPageState extends State<ParaVosPage> {
       body: ListView(
           // This next line does the trick.
           children: <Widget>[
-            new SizedBox(
+            new Container(
+              margin: EdgeInsets.all(10.0),
               height: 15.0,
-              child: Text("NUEVOS ENTRENAMIENTOS",),
+              child: Text("NUEVOS ENTRENAMIENTOS", style: DefaultTextStyle.of(context).style.apply(fontSizeFactor: 1.4)),
             ),
             new Container(
               height: 250.0,
@@ -79,9 +80,10 @@ class _ParaVosPageState extends State<ParaVosPage> {
               ),
             ),
 
-            new SizedBox(
+            new Container(
+              margin: EdgeInsets.all(10.0),
               height: 15.0,
-              child: Text("OTRAS ACTIVIDADES DEL GYM"),
+              child: Text("OTRAS ACTIVIDADES DEL GYM",style: DefaultTextStyle.of(context).style.apply(fontSizeFactor: 1.4)),
             ),
             new Container(
               height: 250.0,
