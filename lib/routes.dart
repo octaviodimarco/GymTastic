@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:gymtastic/pages/aboutUs.dart';
 import 'package:gymtastic/pages/login.dart';
 import 'package:gymtastic/pages/forgotpassword.dart';
 import 'package:gymtastic/pages/maintabs.dart';
 import 'package:gymtastic/pages/register.dart';
-//import 'package:gymtastic/pages/curvedbar.dart';
+
+import 'package:gymtastic/pages/settings.dart';
+import 'package:gymtastic/pages/profile.dart';
 
 Map<String, WidgetBuilder> buildAppRoutes(){
   return {
@@ -11,7 +14,11 @@ Map<String, WidgetBuilder> buildAppRoutes(){
     '/register':(BuildContext context) =>  RegisterPage(),
     '/forgotpassword':(BuildContext context) => ForgotPasswordPage(),
     '/maintabs':(BuildContext context) => MainTabsPage(),
-//    '/curvedbar':(BuildContext context) => CurvedBar(),
+
+    '/settings':(BuildContext context) => SettingsPage(),
+
+    '/profile':(BuildContext context) => ProfilePage(),
+    '/aboutus':(BuildContext context) => AboutUs(),
   };
 
 }

@@ -10,17 +10,9 @@ class ParaVosPage extends StatefulWidget {
 
 class _ParaVosPageState extends State<ParaVosPage> {
 
-  _logout() async {
-   await FirebaseAuth.instance.signOut();
-
-   //   Navigator.of(context).pushReplacementNamed('/register');
-
-
-
-  }
-
 
   @override
+  
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
@@ -133,7 +125,7 @@ class _ParaVosPageState extends State<ParaVosPage> {
                 ],
               ),
             ),
-          ]
+          
 
 
 
@@ -146,6 +138,8 @@ class _ParaVosPageState extends State<ParaVosPage> {
 //            child: Image.asset("assets/logo2.jpg",)),
 //
 //      ),
+    
+    ]
       ),
     );
   }
