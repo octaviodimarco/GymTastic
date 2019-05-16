@@ -28,7 +28,7 @@ dependencies:
   google_sign_in:
   rxdart: 0.20.0
   font_awesome_flutter: any
-
+  folding_cell: "^0.1.2"
 
 
   firebase_core: ^0.3.0

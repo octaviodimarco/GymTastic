@@ -124,11 +124,7 @@ class _PlanPageState extends State<PlanPage>{
                 child:Checkbox(onChanged: (bool e) => something2(),
                 value: checkBoxState2),
               ),
-              new Container(
-                height: 70, width: 35,
-                padding: new EdgeInsets.only(top: 25.0),
-                child: Text(t2),
-              )
+              
             ],
           ),
           new Divider(),
