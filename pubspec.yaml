@@ -44,8 +44,10 @@ dependencies:
   flutter_swiper : any
 
 
+  overlay_support: ^0.0.1
+
   datetime_picker_formfield: ^0.1.8  
-  
+  intl: ^0.15.8
 
   folding_cell: "^0.1.2"
 
