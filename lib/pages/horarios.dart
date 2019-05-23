@@ -6,12 +6,24 @@ void main() => runApp(MaterialApp(
         child: Scaffold(body: Material(child: HorariosPage())))));
 
 /// Example 1 folding cell inside [Container]
+
+var t1 = "";
+var t2 = "";
+var t3 = "";
+var t4 = "";
+var t5 = "";
+var t6 = "";
+var t7 = "";
+
 class HorariosPage extends StatelessWidget {
   final _foldingCellKey = GlobalKey<SimpleFoldingCellState>();
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return 
+      new Column(
+        children: <Widget>[
+          new Container(
       color: Colors.white,
       alignment: Alignment.topCenter,
       child: SimpleFoldingCell(
@@ -25,7 +37,26 @@ class HorariosPage extends StatelessWidget {
           borderRadius: 10,
           onOpen: () => print('cell opened'),
           onClose: () => print('cell closed')),
-    );
+    ),
+    new Container(
+        
+        color: Colors.white,
+      alignment: Alignment.bottomCenter,
+      child: SimpleFoldingCell(
+          key: _foldingCellKey,
+          frontWidget: _buildFrontWidget(),
+          innerTopWidget: _buildInnerTopWidget(),
+          innerBottomWidget: _buildInnerBottomWidget(),
+          cellSize: Size(MediaQuery.of(context).size.width, 120),
+          padding: EdgeInsets.all(10),
+          animationDuration: Duration(milliseconds: 300),
+          borderRadius: 10,
+          onOpen: () => print('cell opened'),
+          onClose: () => print('cell closed')),
+    
+    )    
+        ]
+        );
   }
 
   Widget _buildFrontWidget() {
@@ -38,7 +69,7 @@ class HorariosPage extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: Color(0xff6a53a4),
+                color: Color(0xff606060),
               ),
             
             child: Container(
@@ -52,7 +83,7 @@ class HorariosPage extends StatelessWidget {
                       padding: const EdgeInsets.all(1.0),
                     
                     child: Text('LUNES', style: TextStyle(
-                      color: Color(0xff352C47),
+                      color: Color(0xffffffff),
                       fontSize: 24.0),)
                   )),
                   
@@ -64,11 +95,10 @@ class HorariosPage extends StatelessWidget {
                       padding: const EdgeInsets.all(4.0),
                     
                     child: Text('MONDAY', style: TextStyle(
-                      color: Color(0xffc8b6ea),
+                      color: Color(0xffffffff),
                       fontSize: 14.0),)
-                  )),
-
-              
+                  )
+                  ),
  Container(
    
         height: 50.0,
@@ -80,14 +110,11 @@ class HorariosPage extends StatelessWidget {
          
             onPressed: () => _foldingCellKey?.currentState?.toggleFold(),
             label: Text("Ver Mas",
-            style: TextStyle(fontSize: 40),),),
-            
+            style: TextStyle(fontSize: 40),),)
         ),
       ),
-
-
-                ],)
-              ],),
+  ],)
+],),
             ),
 
 
@@ -102,7 +129,7 @@ class HorariosPage extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: Color(0xffDDD9E5),
+                color: Color(0xffcdcdcd),
               ),
 
 
@@ -187,19 +214,19 @@ class HorariosPage extends StatelessWidget {
 
   Widget _buildInnerTopWidget() {
     return  Container(
-    color: Color(0xffDDD9E5),
+    color: Color(0xffcdcdcd),
     child: ListView(
       
       physics: const NeverScrollableScrollPhysics(),
         children: <Widget>[
          
           new Container(
-            color: Color(0xff6a53a4),
+            color: Color(0xff606060),
             padding: new EdgeInsets.only(top: 10.0),
             height: 30.0,
             child: Text("LUNES", 
             textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold,
-            color: Color(0xff352C47),
+            color: Color(0xffffffff),
 
             
           
@@ -288,7 +315,7 @@ class HorariosPage extends StatelessWidget {
 
   Widget _buildInnerBottomWidget() {
     return Container(
-      color: Color(0xffDDD9E5),
+      color: Color(0xffcdcdcd),
 
       alignment: Alignment.bottomCenter,
       child: Padding(

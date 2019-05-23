@@ -21,7 +21,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-
   firebase_auth: ^0.8.4+2
   cloud_firestore: ^0.9.13
   curved_navigation_bar: ^0.1.2
@@ -29,8 +28,9 @@ dependencies:
   rxdart: 0.20.0
   font_awesome_flutter: any
   folding_cell: "^0.1.2"
+  
 
-
+  flutter_circular_chart:
   firebase_core: ^0.3.0
   firebase_analytics: ^1.0.4
 

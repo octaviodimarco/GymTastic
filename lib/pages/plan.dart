@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:gymtastic/pages/chronometer.dart';
+import 'package:gymtastic/pages/profile.dart';
 
 class PlanPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _PlanPageState();
 }
 
+class PictureWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Container(
+      height: 140, width: 140,
+                margin: const EdgeInsets.all(10.0),
+              child: new Image(image: new AssetImage("assets/gym.gif"))
+      
+    );
+  }
+}
 class _PlanPageState extends State<PlanPage>{
   String t = "";
   String t1 = "";
@@ -27,20 +40,37 @@ class _PlanPageState extends State<PlanPage>{
     return Scaffold (
       body: ListView(
         children: <Widget>[
+         FloatingActionButton(             
+              onPressed: () {
+                Navigator.push(context, new MaterialPageRoute(
+                    builder: (context) {
+                      return TimerPage();
+                          }
+                        )
+                );
+              },
+         
+              child: Icon(Icons.watch),
+
+                    ),
           new Container(
             color: Colors.grey[400],
             padding: new EdgeInsets.only(top: 25.0),
             height: 60.0,
             child: Text("ESTE ES TU PLAN DE HOY", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold)),
           ),
+           
           new Row(
             children: [
-              new Container(
+              new GestureDetector(
+                onDoubleTap: () => new Text("data", textAlign: TextAlign.center),//new Image(image: new AssetImage("assets/gym.gif")),
+                child: Container(
                   height: 140, width: 140,
-                margin: const EdgeInsets.all(10.0),
-              child: new Image(image: new AssetImage("assets/gym.gif"))
+                  margin: const EdgeInsets.all(10.0),
+                  child: new Image(image: new AssetImage("assets/gym1.jpg")),
+                ),
               ),
-
+             
               new Container(
                 height: 140, width: 140,
                   padding: new EdgeInsets.only(top: 60.0),
@@ -58,11 +88,6 @@ class _PlanPageState extends State<PlanPage>{
                 child:Checkbox(onChanged: (bool e) => something(),
                 value: checkBoxState),
               ),
-              new Container(
-                height: 70, width: 35,
-                padding: new EdgeInsets.only(top: 25.0),
-                child: Text(t),
-              )
             ],
           ),
           new Divider(),
@@ -91,12 +116,7 @@ class _PlanPageState extends State<PlanPage>{
                 child:Checkbox(onChanged: (bool e) => something1(),
                 value: checkBoxState1),
               ),
-              new Container(
-                height: 70, width: 35,
-                padding: new EdgeInsets.only(top: 25.0),
-                child: Text(t1),
-              )
-            ],
+              ],
           ),
           new Divider(),
          new Row(
@@ -153,12 +173,7 @@ class _PlanPageState extends State<PlanPage>{
                 child:Checkbox(onChanged: (bool e) => something3(),
                 value: checkBoxState3),
               ),
-              new Container(
-                height: 70, width: 35,
-                padding: new EdgeInsets.only(top: 25.0),
-                child: Text(t3),
-              )
-            ],
+              ],
           ),
           new Divider(),
           new Row(
@@ -186,12 +201,7 @@ class _PlanPageState extends State<PlanPage>{
                 child:Checkbox(onChanged: (bool e) => something4(),
                 value: checkBoxState4),
               ),
-              new Container(
-                height: 70, width: 35,
-                padding: new EdgeInsets.only(top: 25.0),
-                child: Text(t4),
-              )
-            ],
+              ],
           ),
           new Divider(),
           new Row(
@@ -219,12 +229,7 @@ class _PlanPageState extends State<PlanPage>{
                 child:Checkbox(onChanged: (bool e) => something5(),
                 value: checkBoxState5),
               ),
-              new Container(
-                height: 70, width: 35,
-                padding: new EdgeInsets.only(top: 25.0),
-                child: Text(t5),
-              )
-            ],
+              ],
           ),
           new Divider(),
          new Row(
@@ -252,12 +257,7 @@ class _PlanPageState extends State<PlanPage>{
                 child:Checkbox(onChanged: (bool e) => something6(),
                 value: checkBoxState6),
               ),
-              new Container(
-                height: 70, width: 35,
-                padding: new EdgeInsets.only(top: 25.0),
-                child: Text(t6),
-              )
-            ],
+              ],
           ),
           new Divider(),
           new Row(
@@ -285,16 +285,11 @@ class _PlanPageState extends State<PlanPage>{
                 child:Checkbox(onChanged: (bool e) => something7(),
                 value: checkBoxState7),
               ),
-              new Container(
-                height: 70, width: 35,
-                padding: new EdgeInsets.only(top: 25.0),
-                child: Text(t7),
-              )
             ],
           ),
             ],
           ),
-  
+          
 
       
         );
