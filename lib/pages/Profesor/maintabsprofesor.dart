@@ -27,7 +27,7 @@ class MainTabsProfePage extends StatelessWidget {
   // }
 
   // crudMethods crudObj = crudMethods();
-  var datos;
+  // var datos;
 
 // void initState(){
 //     crudObj.getData().then((results){
@@ -71,7 +71,7 @@ class MainTabsProfePage extends StatelessWidget {
                 children: <Widget>[
                   new UserAccountsDrawerHeader(
                     accountName: Text(
-                      'Ricardo Milos',
+                      'Sos profe wacho',
                       style: TextStyle(fontSize: 20.0),
                     ),
                     accountEmail: null,

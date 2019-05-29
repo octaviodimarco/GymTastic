@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gymtastic/behaviors/hiddenScrollBehavior.dart';
+import 'package:gymtastic/services/usermanagement.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -8,8 +10,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
-
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   String _email;
@@ -21,11 +21,12 @@ class _LoginPageState extends State<LoginPage> {
     if (_isLoggingIn) return;
     setState(() {
       _isLoggingIn = true;
+      
     });
 
-    _scaffoldKey.currentState.showSnackBar(
-        SnackBar(content: Text('Loggin in user'),
-        ));
+    _scaffoldKey.currentState.showSnackBar(SnackBar(
+      content: Text('Loggin in user'),
+    ));
 
     final form = _formKey.currentState;
 
@@ -42,8 +43,8 @@ class _LoginPageState extends State<LoginPage> {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: _email, password: _password);
-      Navigator.of(context).pop();
-      Navigator.of(context).pushReplacementNamed('/maintabs');
+      UserManagement().authorizeAccess(context); 
+      
     } catch (e) {
       // error
       _scaffoldKey.currentState.hideCurrentSnackBar();
@@ -56,7 +57,8 @@ class _LoginPageState extends State<LoginPage> {
               _scaffoldKey.currentState.hideCurrentSnackBar();
             }),
       ));
-    } finally {
+    } 
+    finally {
       setState(() {
         _isLoggingIn = false;
       });
@@ -131,6 +133,8 @@ class _LoginPageState extends State<LoginPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          
+          //  UserManagement().authorizeAccess(context);
           _loggin();
         },
         child: Icon(Icons.check_circle),
