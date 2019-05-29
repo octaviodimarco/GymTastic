@@ -5,33 +5,21 @@ import 'package:flutter/material.dart';
 import 'package:gymtastic/behaviors/hiddenScrollBehavior.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:gymtastic/services/crud.dart';
 import 'package:gymtastic/ui/blur_background.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'package:gymtastic/services/usermanagement.dart';
+import 'package:gymtastic/services/crud.dart';
 
-// final FirebaseApp app= FirebaseApp (
-//   options: FirebaseOptions(
-//     googleAppID: '',
-//     apiKey: '',
-//     databaseURL: 'https://gymtastic-b8d89.firebaseio.com',
-//   )
-// );
-
-
-
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class SignInPage extends StatefulWidget {
-  
-  
   @override
   _SignInPageState createState() => _SignInPageState();
 }
-
-
-
-
 
 class _SignInPageState extends State<SignInPage> {
   _signInWithGoogle() async {
@@ -42,23 +30,17 @@ class _SignInPageState extends State<SignInPage> {
       final credential = GoogleAuthProvider.getCredential(
           accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
       final firebaseUser =
-      await FirebaseAuth.instance.signInWithCredential(credential);
+          await FirebaseAuth.instance.signInWithCredential(credential);
       print('Signed in as: ' + firebaseUser.displayName);
-      await Navigator.of(context)
-          .pushReplacementNamed('/maintabs');
+      await Navigator.of(context).pushReplacementNamed('/maintabs');
     } catch (e) {
       print(e);
     }
   }
 
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-  
       body: Container(
         padding: EdgeInsets.all(32.0),
         child: Center(
@@ -75,8 +57,6 @@ class _SignInPageState extends State<SignInPage> {
                 ),
               ),
 
-
-
 //              RaisedButton.icon(
 //                icon: Icon(FontAwesomeIcons.google),
 //                label: Text('Sign in with Google'),
@@ -92,20 +72,13 @@ class _SignInPageState extends State<SignInPage> {
   }
 }
 
-
-class RegisterPage extends StatefulWidget { 
+class RegisterPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _RegisterPageState();
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-
-
-
-  
-
-
-
+  crudMethods crudObj = crudMethods();
 
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -115,15 +88,31 @@ class _RegisterPageState extends State<RegisterPage> {
   String _email;
   String _password;
   String _city;
-
+  var datos;
 
   bool _isRegistering = false;
 
 
+  TextEditingController customController = TextEditingController();
 
+  Future<String> createAlertDialog(BuildContext context){
+    return showDialog(context: context, builder: (context){
+      return AlertDialog(
+        title: Text("Ingrese la clave de profesor"),
+        content: TextField(
+          controller: customController,
 
-
-
+        ),
+        actions: <Widget>[
+          MaterialButton(elevation: 5.0,
+          child: Text('Enviar'),
+          onPressed: (){
+            Navigator.of(context).pop(customController.text.toString());
+          },)
+        ],
+      );
+    });
+  }
 /*
   ____    _  _____  _    ____    _    ____  _____ 
  |  _ \  / \|_   _|/ \  | __ )  / \  / ___|| ____|
@@ -131,77 +120,85 @@ class _RegisterPageState extends State<RegisterPage> {
  | |_| / ___ \| |/ ___ \| |_) / ___ \ ___) | |___ 
  |____/_/   \_\_/_/   \_\____/_/   \_\____/|_____|                                                
 */
-  final DocumentReference documentReference= Firestore.instance.document("myData/dummy");
+  final DocumentReference documentReference =
+      Firestore.instance.document("myData/dummy");
+
+  int probador = 0;
+  String usuario = "Alumno";
+  String _claveSecreta = "123";
   
   String Prueba = null;
+
   StreamSubscription<DocumentSnapshot> subscription;
 
-  void _add() {
-    Map<String,String> data = <String, String> {
-      "name": "Octavio",
-      "desc":"CEO"
 
+  void _add() {
+    Map<String, String> data = <String, String>{
+      "name": "Octavio",
+      "desc": "CEO"
     };
-    documentReference.setData(data).whenComplete((){
-        print("Document Added");
+    documentReference.setData(data).whenComplete(() {
+      print("Document Added");
     }).catchError((e) => print(e));
   }
 
-
-
   void _update() {
-    Map<String,String> data = <String, String> {
+    Map<String, String> data = <String, String>{
       "name": "Octavio Updated",
-      "desc":"CEO Updated"
-
+      "desc": "CEO Updated"
     };
-    documentReference.updateData(data).whenComplete((){
-        print("Document Updated");
+    documentReference.updateData(data).whenComplete(() {
+      print("Document Updated");
     }).catchError((e) => print(e));
   }
 
   void _fetch() {
-    documentReference.get().then((datasnapshot){
-        if(datasnapshot.exists){
-          setState(() {
-            Prueba = datasnapshot.data['desc'];
-          });
-          
-        }
+    documentReference.get().then((datasnapshot) {
+      if (datasnapshot.exists) {
+        setState(() {
+          Prueba = datasnapshot.data['desc'];
+        });
+      }
     });
   }
 
+  int usuario1 = 0;
+  void userchange(){
+    setState(()=> usuario1++);
+    
+  }
 
-  void _delete(){
-    documentReference.delete().whenComplete((){
+  void tipousuario(){
+    if (usuario1 == 1)
+    usuario = 'Profesor';
+    else 
+      usuario='Alumno';
+      
+    
+  }
+
+  void _delete() {
+    documentReference.delete().whenComplete(() {
       print("Deleted Successfully");
-      setState((){});
+      setState(() {});
     }).catchError((e) => print(e));
-
   }
 
+// @override
+// void initState(){
+//     crudObj.getData().then((results){
+//       setState((){
+//         datos = results;
+//       });
+//     });
+//     super.initState();
+//   }
 
-
-
-@override
-void initState(){
-    super.initState();
-    subscription = documentReference.snapshots().listen((datasnapshot){
-if (datasnapshot.exists){
-          setState(() {
-            Prueba = datasnapshot.data['desc'];
-          });
-          
-        }
-    });
-  }
-
-@override 
-  void dispose(){
+  @override
+  void dispose() {
     super.dispose();
     subscription?.cancel();
   }
-
 
 /* 
    ____  ___   ___   ____ _     _____    ____ ___ ____ _   _    ___ _   _ 
@@ -212,7 +209,6 @@ if (datasnapshot.exists){
                                                                           
 */
 
-
   _signInWithGoogle() async {
     try {
       final googleUser = await GoogleSignIn().signIn();
@@ -221,15 +217,13 @@ if (datasnapshot.exists){
       final credential = GoogleAuthProvider.getCredential(
           accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
       final firebaseUser =
-      await FirebaseAuth.instance.signInWithCredential(credential);
+          await FirebaseAuth.instance.signInWithCredential(credential);
       print('Signed in as: ' + firebaseUser.displayName);
-      await Navigator.of(context)
-          .pushReplacementNamed('/maintabs');
+      await Navigator.of(context).pushReplacementNamed('/maintabs');
     } catch (e) {
       print(e);
     }
   }
-
 
   _register() async {
     if (_isRegistering) return;
@@ -237,9 +231,9 @@ if (datasnapshot.exists){
       _isRegistering = true;
     });
 
-    _scaffoldKey.currentState.showSnackBar(
-        SnackBar(content: Text('Registering user'),
-        ));
+    _scaffoldKey.currentState.showSnackBar(SnackBar(
+      content: Text('Registering user'),
+    ));
 
     final form = _formKey.currentState;
 
@@ -254,9 +248,21 @@ if (datasnapshot.exists){
     form.save();
 
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: _email, password: _password);
-      Navigator.of(context).pushReplacementNamed('/maintabs');
+      await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: _email, password: _password);
+      crudObj.addData({
+            'e-mail': this._email,
+            'Nombre': this._name,
+            'Apellido': this._lastname,
+            'Ciudad': this._city,
+            'TipoUsuario': this.usuario,
+          });
+          if (usuario == 'Profesor') {
+      Navigator.of(context).pushReplacementNamed('/maintabsprofe');
+          }
+          else {
+            Navigator.of(context).pushReplacementNamed('/maintabs');
+          }
     } catch (e) {
       // error
       _scaffoldKey.currentState.hideCurrentSnackBar();
@@ -277,34 +283,21 @@ if (datasnapshot.exists){
   }
 
   @override
-
-  
-
-
-
   Widget build(BuildContext context) {
     return Scaffold(
-
       key: _scaffoldKey,
-
       body: Container(
-
-
-
-
         padding: EdgeInsets.all(20.0),
         child: ScrollConfiguration(
             behavior: HiddenScrollBehavior(),
             child: Form(
               key: _formKey,
               child: ListView(
-                children:
-
-                <Widget>[
-
+                children: <Widget>[
                   Image.asset('assets/logo2.png'),
 
-                  TextFormField(autocorrect: false,
+                  TextFormField(
+                    autocorrect: false,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(labelText: 'Email'),
                     validator: (val) {
@@ -319,7 +312,8 @@ if (datasnapshot.exists){
                       });
                     },
                   ),
-                  TextFormField(obscureText: true,
+                  TextFormField(
+                    obscureText: true,
                     decoration: InputDecoration(labelText: 'Password'),
                     validator: (val) {
                       if (val.isEmpty) {
@@ -334,7 +328,8 @@ if (datasnapshot.exists){
                     },
                   ),
 
-                  TextFormField(autocorrect: false,
+                  TextFormField(
+                    autocorrect: false,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(labelText: 'Nombre'),
                     validator: (val) {
@@ -344,22 +339,14 @@ if (datasnapshot.exists){
                         return null;
                     },
                     onSaved: (val) {
-                    
-        
-                       Map<String,String> data = <String, String>{
-                         "name": val,
-                       };
-                       documentReference.setData(data).whenComplete((){
-                         print("Document Added");
-    }).catchError((e) => print(e));
-                    
                       setState(() {
                         _name = val;
                       });
                     },
                   ),
 
-                  TextFormField(autocorrect: false,
+                  TextFormField(
+                    autocorrect: false,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(labelText: 'Apellido'),
                     validator: (val) {
@@ -375,15 +362,10 @@ if (datasnapshot.exists){
                     },
                   ),
 
-
-                
-                  
                   // TextFormField(autocorrect: false,
                   //   keyboardType: TextInputType.datetime,
                   //   decoration: InputDecoration(labelText: 'Fecha de nacimiento'),
-                  
 
-                    
                   //   validator: (val) {
                   //     if (val.isEmpty) {
                   //       return 'Please enter your birth';
@@ -397,7 +379,8 @@ if (datasnapshot.exists){
                   //   },
                   // ),
 
-                  TextFormField(autocorrect: false,
+                  TextFormField(
+                    autocorrect: false,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(labelText: 'Ciudad'),
                     validator: (val) {
@@ -413,141 +396,131 @@ if (datasnapshot.exists){
                     },
                   ),
 
+                  // DropdownButton<String>(
+                  //   items: <String>['Alummo', 'Profesor'].map((String value) {
+                  //     return new DropdownMenuItem<String>(
+                  //       value: value,
+                  //       child: new Text(value),
+                  //     );
+                  //   }).toList(),
+                  //   onChanged: (_) {},
+                  //   hint: Text("Por favor seleccione el tipo de usuario"),
+                  // ),
 
-               
-                    
-
-
-          //       Container(
-          //         child: ListView(
-          //           children: <Widget>[
-          //             Text('Format: "${formats[inputType].pattern}"'),
-
-          //   //
-          //   // The widget.
-          //   //
-          //   DateTimePickerFormField(
-          //     inputType: inputType,
-          //     format: formats[inputType],
-          //     editable: editable,
-          //     decoration: InputDecoration(
-          //         labelText: 'Date/Time', hasFloatingPlaceholder: false),
-          //     onChanged: (dt) => setState(() => date = dt),
-          //   ),
-
-          //   Text('Date value: $date'),
-          //   SizedBox(height: 16.0),
-          //   CheckboxListTile(
-          //     title: Text('Date picker'),
-          //     value: inputType != InputType.time,
-          //     onChanged: (value) => updateInputType(date: value),
-          //   ),
-          //   CheckboxListTile(
-          //     title: Text('Time picker'),
-          //     value: inputType != InputType.date,
-          //     onChanged: (value) => updateInputType(time: value),
-          //   ),
-          //   CheckboxListTile(
-          //     title: Text('Editable'),
-          //     value: editable,
-          //     onChanged: (value) => setState(() => editable = value),
-          //   ),
-          // ],
-                    
-          //         ),
-          //       ),
-
+                
                   
-                  DropdownButton<String>(
-  items: <String>['Alummo', 'Profesor'].map((String value) {
-    return new DropdownMenuItem<String>(
-      value: value,
-      child: new Text(value),
-    );
-  }).toList(),
-  onChanged: (_) {},
-  hint: Text(
-    "Por favor seleccione el tipo de usuario"
-  ),
-),
-
                   
+                  Container(
+                    width: 300,
+  height: 50,
+  margin: EdgeInsets.all(10),
+  child: FlatButton(
+    onPressed: (){
+            createAlertDialog(context).then((onValue) {
+              if("$onValue" == _claveSecreta){
+               userchange();
+               usuario = 'Profesor';
+              }
+            
+              
+            });
+          },
+          child: Text('Soy $usuario',
+          textAlign: TextAlign.left,
+          style: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+            ),
+          ),
+        )
+      
+                  ),
 
+                 
 
                   Separator,
 
-
-              //Boton de ingreso con Google
-              Container(
-
-                width: 300,
-                height: 50,
-                margin: EdgeInsets.only(top: 26),
-                child: FlatButton.icon(
-                  icon: Icon(FontAwesomeIcons.google),
-                  label: Text('Google'),
-                  onPressed: () {_signInWithGoogle();},
-                  color: Colors.red,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(5),
+                  //Boton de ingreso con Google
+                  Container(
+                    width: 300,
+                    height: 50,
+                    margin: EdgeInsets.only(top: 26),
+                    child: FlatButton.icon(
+                      icon: Icon(FontAwesomeIcons.google),
+                      label: Text('Google'),
+                      onPressed: () {
+                        _signInWithGoogle();
+                      },
+                      color: Colors.red,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(5),
+                        ),
+                      ),
+                      textColor: Colors.white,
                     ),
                   ),
-                  textColor: Colors.white,
-                ),
-              ),
 
-              // Separator2,
+                  // Separator2,
 
-              // //Boton de ingreso con Facebook
-              // Container(
-              //   width: 300,
-              //   height: 50,
-              //   margin: EdgeInsets.only(top: 26),
-              //   child: FlatButton.icon(
-              //     icon: Icon(FontAwesomeIcons.facebook),
-              //     onPressed: () {},
-              //     label: Text('Facebook'),
-              //     color: Color.fromARGB(255, 37, 71, 155),
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.all(Radius.circular(5)),
-              //     ),
-              //     textColor: Colors.white,
-              //   ),
-              // ),
-
-
+                  // //Boton de ingreso con Facebook
+                  // Container(
+                  //   width: 300,
+                  //   height: 50,
+                  //   margin: EdgeInsets.only(top: 26),
+                  //   child: FlatButton.icon(
+                  //     icon: Icon(FontAwesomeIcons.facebook),
+                  //     onPressed: () {},
+                  //     label: Text('Facebook'),
+                  //     color: Color.fromARGB(255, 37, 71, 155),
+                  //     shape: RoundedRectangleBorder(
+                  //       borderRadius: BorderRadius.all(Radius.circular(5)),
+                  //     ),
+                  //     textColor: Colors.white,
+                  //   ),
+                  // ),
 
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 20.0),
-
-                    child: Text('Welcome to GymTastic!', style: TextStyle(
-                        color: Color.fromARGB(255, 200, 200, 200)),),
+                    child: Text(
+                      'Welcome to GymTastic!',
+                      style:
+                          TextStyle(color: Color.fromARGB(255, 200, 200, 200)),
+                    ),
                   )
                 ],
               ),
-            )
-        ),
+            )),
+            
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _register();
+          // crudObj.addData({
+          //   'e-mail': this._email,
+          //   'Nombre': this._name,
+          //   'Apellido': this._lastname,
+          //   'Ciudad': this._city,
+          //   'TipoUsuario': this.usuario,
+          // });
         },
         child: Icon(Icons.person_add),
       ),
       persistentFooterButtons: <Widget>[
-        FlatButton(onPressed: () {
-          Navigator.of(context).pushNamed('/login');
-        },
+        FlatButton(
+          onPressed: () {
+            Navigator.of(context).pushNamed('/login');
+          },
           child: Text('I already have an account'),
         )
       ],
     );
   }
+
+
+
+
 }
-
-
-
 
 // var facebookSignInButton = Container(
 //   width: 300,
@@ -565,10 +538,7 @@ if (datasnapshot.exists){
 //   ),
 // );
 
-
-
 var googleSignInButton = Container(
-
   width: 300,
   height: 50,
   margin: EdgeInsets.only(top: 26),
@@ -585,6 +555,40 @@ var googleSignInButton = Container(
     textColor: Colors.white,
   ),
 );
+
+
+// var TipoUsuario = Container(
+//   width: 300,
+//   height: 50,
+//   margin: EdgeInsets.only(top: 26),
+//   child: FlatButton(
+//     onPressed: (){
+//             createAlertDialog(context);
+//           },
+//           child: Text('Soy profesor'),
+//         )
+//       );
+      
+//       Future<String> createAlertDialog(BuildContext context) {
+// return showDialog(context: context, builder: (context){
+//       return AlertDialog(
+//         title: Text("Ingrese la clave de profesor"),
+//         content: TextField(
+//           controller: customController,
+
+//         ),
+//         actions: <Widget>[
+//           MaterialButton(elevation: 5.0,
+//           child: Text('Enviar'),
+//           onPressed: (){},)
+//         ],
+//       );
+//     });
+// }
+// TextEditingController customController = TextEditingController();
+
+
+
 
 var Separator = Container(
   width: 312,
@@ -636,7 +640,6 @@ var Separator = Container(
   ),
 );
 
-
 var Separator2 = Container(
   width: 312,
   height: 17,
@@ -686,3 +689,51 @@ var Separator2 = Container(
     ],
   ),
 );
+
+// var SeleccionUsuario = Container(
+//   alignment: Alignment.center,
+//   child: ListView(
+//     children: <Widget>[
+//       Container(
+//         padding: EdgeInsets.all(10),
+//         width: 100,
+//         height: 100,
+//         child: Text("Seleccione el tipo de usuario",
+//         style: TextStyle(color: Colors.black))
+//       ),
+
+//       Row(children: <Widget>[
+//         Container(
+//           margin: const EdgeInsets.all(10),
+//           width: 100,
+//         height: 100,
+//           child: Text("Alumno",
+//           textAlign: TextAlign.center,
+//           style: TextStyle(color:Colors.black),
+//           ),
+
+//         ),
+//         Container(
+//           margin: const EdgeInsets.all(10),
+//           width: 100,
+//         height: 100,
+//           child: Text("Alumno",
+//           textAlign: TextAlign.center,
+//           style: TextStyle(color:Colors.black),
+//           ),
+//         )
+//       ],)
+//     ],
+//   ),
+// );
+
+class Datos {
+  final String _name;
+  final String _lastname;
+
+  Datos(this._name, this._lastname);
+
+  String get nombre {
+    return _name;
+  }
+}

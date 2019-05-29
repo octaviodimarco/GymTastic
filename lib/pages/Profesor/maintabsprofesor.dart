@@ -16,7 +16,7 @@ import 'package:gymtastic/services/crud.dart';
 /* Posibles colores:
 0xff8356ba1 (Azul marino)
  */
-class MainTabsPage extends StatelessWidget {
+class MainTabsProfePage extends StatelessWidget {
   // void initState(){
   //   crudObj.getData().then((results){
   //     setState((){
