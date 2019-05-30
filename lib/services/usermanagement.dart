@@ -35,9 +35,6 @@ class UserManagement {
                 Navigator.of(context).pushNamed('/maintabsprofe');
               }
               if (docs.documents[0].data['TipoUsuario'] == 'Alumno') {
-                // Navigator.of(context).pop();
-                // Navigator.of(context).push(MaterialPageRoute(
-                //   builder: (BuildContext context) => MainTabsProfePage()));
                 Navigator.of(context).pop();
                 Navigator.of(context).pushNamed('/maintabs');
               }

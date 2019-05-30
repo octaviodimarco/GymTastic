@@ -13,6 +13,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:gymtastic/services/usermanagement.dart';
 import 'package:gymtastic/services/crud.dart';
+import 'package:overlay_support/overlay_support.dart';
 
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -420,6 +421,24 @@ class _RegisterPageState extends State<RegisterPage> {
               if("$onValue" == _claveSecreta){
                userchange();
                usuario = 'Profesor';
+               showSimpleNotification(
+              context,
+              Text(
+                "Bienvenido profe!",
+                textAlign: TextAlign.center,
+                style: (TextStyle(fontSize: 20)),
+              ),
+              background: Colors.grey[600]);
+              }
+              else {
+                showSimpleNotification(
+              context,
+              Text(
+                "Contraseña incorrecta, por favor intente nuevamente",
+                textAlign: TextAlign.center,
+                style: (TextStyle(fontSize: 20)),
+              ),
+              background: Colors.grey[600]);
               }
             
               

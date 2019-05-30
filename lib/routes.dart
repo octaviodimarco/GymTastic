@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gymtastic/pages/Profesor/alumnos.dart';
+import 'package:gymtastic/pages/Profesor/ejerciciosprofe.dart';
 import 'package:gymtastic/pages/Profesor/maintabsprofesor.dart';
 // import 'package:gymtastic/pages/aboutUs.dart';
 import 'package:gymtastic/pages/login.dart';
@@ -35,6 +37,8 @@ Map<String, WidgetBuilder> buildAppRoutes(){
 */
 
   '/maintabsprofe':(BuildContext context) => MainTabsProfePage(),
+  '/alumnosprofe':(BuildContext context) => AlumnosPage(),
+  '/ejerciciosprofe':(BuildContext context) => EjerciciosProfePage(),
 
   };
 

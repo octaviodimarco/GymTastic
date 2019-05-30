@@ -26,7 +26,7 @@ class crudMethods {
   getData() async {
     return await Firestore.instance
         .collection('informacionUsuarios')
-        .snapshots();
+        .getDocuments();
   }
 
   updateData(selectedDoc, newValues) {
@@ -48,4 +48,12 @@ class crudMethods {
       print(e);
     });
   }
+}
+
+
+void readData() async {
+DocumentSnapshot snapshot = await Firestore.instance
+.collection('informacionUsuarios').document().get();
+print(snapshot.data['nombre']);
+
 }
