@@ -33,6 +33,7 @@ class UserManagement {
               if (docs.documents[0].data['TipoUsuario'] == 'Profesor') {
                 Navigator.of(context).pop();
                 Navigator.of(context).pushNamed('/maintabsprofe');
+                // Navigator.of(context).pushNamed('/alumnosprofe');
               }
               if (docs.documents[0].data['TipoUsuario'] == 'Alumno') {
                 Navigator.of(context).pop();

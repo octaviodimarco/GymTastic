@@ -23,19 +23,19 @@ class MainTabsProfePage extends StatefulWidget {
 }
 class _MainTabsProfePageState extends State<MainTabsProfePage>{
   
-   QuerySnapshot datos;
+  //  QuerySnapshot datos;
 
-  crudMethods crudObj = new crudMethods();
+  // crudMethods crudObj = new crudMethods();
 
-  @override
-  void initState(){
-      crudObj.getData().then((results){
-        setState((){
-                  datos = results;
-                });
-              });
+  // @override
+  // void initState(){
+  //     crudObj.getData().then((results){
+  //       setState((){
+  //                 datos = results;
+  //               });
+  //             });
         
-          }
+  //         }
         
         
         
@@ -74,13 +74,13 @@ class _MainTabsProfePageState extends State<MainTabsProfePage>{
                         children: <Widget>[
                           new UserAccountsDrawerHeader(
                             accountName: Text(
-                              'Sos profe wacho',
+                              'Profe del año',
                               style: TextStyle(fontSize: 20.0),
                             ),
                             accountEmail: null,
                             currentAccountPicture: new CircleAvatar(
                               backgroundColor: Colors.red,
-                              child: new Text("R"),
+                              child: new Text("P"),
                             ),
                           ),
         
@@ -127,14 +127,14 @@ class _MainTabsProfePageState extends State<MainTabsProfePage>{
                             onTap: () {},
                           ),
                           
-        ListTile(
-                            title: Text(
-                              datos.documents[1].data['Nombre'],
-                              style: TextStyle(fontSize: 16.5),
-                            ),
-                            trailing: Icon(Icons.info),
-                            onTap: () {},
-                          ),
+        // ListTile(
+        //                     title: Text(
+        //                       datos.documents[1].data['Nombre'],
+        //                       style: TextStyle(fontSize: 16.5),
+        //                     ),
+        //                     trailing: Icon(Icons.info),
+        //                     onTap: () {},
+        //                   ),
                           new Expanded(
                             child: new Align(
                               alignment: Alignment.bottomCenter,
@@ -164,24 +164,24 @@ class _MainTabsProfePageState extends State<MainTabsProfePage>{
 
 
 
-Widget _dataList(){
-if (datos != null){
-  return ListView.builder(
-    itemCount: datos.documents.length,
-    padding: EdgeInsets.all(5.0),
-    itemBuilder: (context, i) {
-      return ListTile(
-        title: Text(datos.documents[i].data['Nombre']),
-        subtitle: Text(datos.documents[i].data['Apellido']),
-      );
-    },
-  );
-}
-else {
-  return Text('Loading, Please wait');
-}
+// Widget _dataList(){
+// if (datos != null){
+//   return ListView.builder(
+//     itemCount: datos.documents.length,
+//     padding: EdgeInsets.all(5.0),
+//     itemBuilder: (context, i) {
+//       return ListTile(
+//         title: Text(datos.documents[i].data['Nombre']),
+//         subtitle: Text(datos.documents[i].data['Apellido']),
+//       );
+//     },
+//   );
+// }
+// else {
+//   return Text('Loading, Please wait');
+// }
 
-}
+// }
 
 }
 

@@ -12,7 +12,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:gymtastic/services/usermanagement.dart';
-import 'package:gymtastic/services/crud.dart';
+
 import 'package:overlay_support/overlay_support.dart';
 
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -130,38 +130,38 @@ class _RegisterPageState extends State<RegisterPage> {
   
   String Prueba = null;
 
-  StreamSubscription<DocumentSnapshot> subscription;
+  // StreamSubscription<DocumentSnapshot> subscription;
 
 
-  void _add() {
-    Map<String, String> data = <String, String>{
-      "name": "Octavio",
-      "desc": "CEO"
-    };
-    documentReference.setData(data).whenComplete(() {
-      print("Document Added");
-    }).catchError((e) => print(e));
-  }
+  // void _add() {
+  //   Map<String, String> data = <String, String>{
+  //     "name": "Octavio",
+  //     "desc": "CEO"
+  //   };
+  //   documentReference.setData(data).whenComplete(() {
+  //     print("Document Added");
+  //   }).catchError((e) => print(e));
+  // }
 
-  void _update() {
-    Map<String, String> data = <String, String>{
-      "name": "Octavio Updated",
-      "desc": "CEO Updated"
-    };
-    documentReference.updateData(data).whenComplete(() {
-      print("Document Updated");
-    }).catchError((e) => print(e));
-  }
+  // void _update() {
+  //   Map<String, String> data = <String, String>{
+  //     "name": "Octavio Updated",
+  //     "desc": "CEO Updated"
+  //   };
+  //   documentReference.updateData(data).whenComplete(() {
+  //     print("Document Updated");
+  //   }).catchError((e) => print(e));
+  // }
 
-  void _fetch() {
-    documentReference.get().then((datasnapshot) {
-      if (datasnapshot.exists) {
-        setState(() {
-          Prueba = datasnapshot.data['desc'];
-        });
-      }
-    });
-  }
+  // void _fetch() {
+  //   documentReference.get().then((datasnapshot) {
+  //     if (datasnapshot.exists) {
+  //       setState(() {
+  //         Prueba = datasnapshot.data['desc'];
+  //       });
+  //     }
+  //   });
+  // }
 
   int usuario1 = 0;
   void userchange(){
@@ -195,11 +195,11 @@ class _RegisterPageState extends State<RegisterPage> {
 //     super.initState();
 //   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    subscription?.cancel();
-  }
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   subscription?.cancel();
+  // }
 
 /* 
    ____  ___   ___   ____ _     _____    ____ ___ ____ _   _    ___ _   _ 
