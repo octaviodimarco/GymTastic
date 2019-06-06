@@ -38,7 +38,7 @@ Map<String, WidgetBuilder> buildAppRoutes(){
 
   '/maintabsprofe':(BuildContext context) => MainTabsProfePage(),
   '/alumnosprofe':(BuildContext context) => AlumnosPage(),
-  '/ejerciciosprofe':(BuildContext context) => EjerciciosProfePage(),
+  '/ejerciciosprofe':(BuildContext context) => EjercicioProfe(),
 
   };
 

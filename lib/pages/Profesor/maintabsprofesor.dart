@@ -154,7 +154,7 @@ class _MainTabsProfePageState extends State<MainTabsProfePage>{
                     ),
                     body: TabBarView(children: [
                       AlumnosPage(),
-                      EjerciciosProfePage(),
+                      EjercicioProfe(),
                       
                     ]),
                   )),
