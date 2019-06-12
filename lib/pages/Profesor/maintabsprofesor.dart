@@ -5,6 +5,8 @@ import 'package:gymtastic/pages/Profesor/alumnos.dart';
 import 'package:gymtastic/pages/Profesor/ejerciciosprofe.dart';
 
 
+import 'package:gymtastic/ui/viewpage.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -154,7 +156,7 @@ class _MainTabsProfePageState extends State<MainTabsProfePage>{
                     ),
                     body: TabBarView(children: [
                       AlumnosPage(),
-                      EjerciciosProfePage(),
+                      MyApp(),
                       
                     ]),
                   )),

@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gymtastic/pages/horarios.dart';
 import 'package:gymtastic/pages/paravos.dart';
@@ -10,32 +9,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import 'package:gymtastic/pages/register.dart';
-import 'package:gymtastic/services/crud.dart';
+
+
 
 /* Posibles colores:
 0xff8356ba1 (Azul marino)
  */
 class MainTabsPage extends StatelessWidget {
-  // void initState(){
-  //   crudObj.getData().then((results){
-  //     setState((){
-  //       cars = results;
-  //     });
-  //   });
-  //   super.initState();
-  // }
-
-  // crudMethods crudObj = crudMethods();
-  var datos;
-
-// void initState(){
-//     crudObj.getData().then((results){
-//         datos = results;
-//     });
-
-//   }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -80,22 +60,6 @@ class MainTabsPage extends StatelessWidget {
                       child: new Text("R"),
                     ),
                   ),
-
-                 
-                  // StreamBuilder(
-                  //     stream: Firestore.instance.collection('informacionUsuario').snapshots(),
-                  //     builder: (context, snapshot) {
-                  //       if(!snapshot.hasData)
-                  //       return Text('Loading data.. Please Wait..');
-                  //       return Column(
-
-                  //         children: <Widget>[
-                  //           Text(snapshot.data.documents[0]['Nombre']),
-                  //           Text(snapshot.data.documents[0]['Apellido']),
-                  //         ],
-                  //       );
-                  //     },
-                  //   ),
                   ListTile(
                     title: Text(
                       "Configuracion de perfil",
@@ -106,9 +70,7 @@ class MainTabsPage extends StatelessWidget {
                       Navigator.of(context).pushNamed('/profile');
                     },
                   ),
-                   
                   ListTile(
-                    
                     title: Text("Estadisticas de usuario",
                         style: TextStyle(fontSize: 16.5)),
                     trailing: Icon(Icons.assessment),
@@ -121,13 +83,15 @@ class MainTabsPage extends StatelessWidget {
                       style: TextStyle(fontSize: 16.5),
                     ),
                     trailing: Icon(Icons.info),
-                    onTap: () {},
+                    onTap: () {
+                      
+                    },
                   ),
-
                   new Expanded(
                     child: new Align(
                       alignment: Alignment.bottomCenter,
-                      child: ListTile(
+                      child: 
+                      ListTile(
                         title: Text("Cerrar sesion",
                             style: TextStyle(fontSize: 16.5)),
                         trailing: Icon(Icons.close),
@@ -137,7 +101,9 @@ class MainTabsPage extends StatelessWidget {
                         },
                       ),
                     ),
+                    
                   ),
+                  
                 ],
               ),
             ),
@@ -147,21 +113,10 @@ class MainTabsPage extends StatelessWidget {
               HorariosPage(),
             ]),
           )),
+
+         
+
     );
   }
 }
 
-Widget build(BuildContext context) {
-  return new StreamBuilder(
-      stream: Firestore.instance
-          .collection('informacionUsuarios')
-          .document('Nombre')
-          .snapshots(),
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) {
-          return new Text("Loading");
-        }
-        var userDocument = snapshot.data;
-        return new Text(userDocument["Nombre"]);
-      });
-}

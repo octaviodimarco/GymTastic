@@ -249,6 +249,48 @@ if (todaydate == friday) {
     );
     }
 
+/*
+  _____ ___ _   _ ____  _____ 
+ |  ___|_ _| \ | |  _ \| ____|
+ | |_   | ||  \| | | | |  _|  
+ |  _|  | || |\  | |_| | |___ 
+ |_|   |___|_| \_|____/|_____|
+                              
+*/
+
+    else{
+    return ListView(
+      children: <Widget>[
+        Container(
+           padding: EdgeInsets.only(top: 10.0),
+          child: Text('$formattedDate',
+          
+          textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 23,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xff0b3d91),
+                  )),
+        ),
+      
+        Container(
+          child: HorarioLunes(),
+        ),
+        Container(
+          child: HorarioMartes(),
+        ),
+        Container(
+          child: HorarioMiercoles(),
+        ),
+        Container(
+          child: HorarioJueves(),
+        ),
+        Container(
+          child: HorarioViernes(),
+        )
+      ],
+    );
+    }
 
 
 
