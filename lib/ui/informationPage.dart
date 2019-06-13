@@ -42,7 +42,7 @@ class _MyInfoPageState extends State<MyInfoPage> {
     getPost();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Information Page'),
+        title: Text('Ejercicio'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),
@@ -66,14 +66,14 @@ class _MyInfoPageState extends State<MyInfoPage> {
                 ),
                 //new IniciarIcon(),
                 new ListTile(
-                  leading: const Icon(Icons.person, color: Colors.black),
+                  leading: const Icon(Icons.info, color: Colors.black),
                   title: new TextFormField(
                     controller: nameInputController,
                     validator: (value) {
                       if (value.isEmpty) return "Ingresa un nombre";
                     },
                     decoration: new InputDecoration(
-                        hintText: "Name", labelText: "Name"),
+                        hintText: "Name", labelText: "Nombre Ejercicio"),
                   ),
                 ),
                 Padding(
@@ -88,7 +88,7 @@ class _MyInfoPageState extends State<MyInfoPage> {
                       if (value.isEmpty) return "Ingresa un nombre";
                     },
                     decoration: new InputDecoration(
-                        hintText: "description", labelText: "description"),
+                        hintText: "description", labelText: "Descripción"),
                   ),
                 ),
                 Padding(
@@ -154,5 +154,3 @@ class IconoMenu extends StatelessWidget {
     );
   }
 }
-
-

@@ -171,7 +171,7 @@ class _MyUpdatePageState extends State<MyUpdatePage> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               RaisedButton(
-                child: Text('Update'),
+                child: Text('Actualizar'),
                 onPressed: () {
                   DateTime now = DateTime.now();
                   String nuevoformato =
@@ -205,7 +205,7 @@ class _MyUpdatePageState extends State<MyUpdatePage> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               RaisedButton(
-                child: Text('Close'),
+                child: Text('Cancelar'),
                 onPressed: () {
                   Navigator.of(context).pop();
                 }

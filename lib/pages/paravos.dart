@@ -20,9 +20,9 @@ class _ParaVosPageState extends State<ParaVosPage> {
       body: ListView(
       // This next line does the trick.
       children: <Widget>[
-      new SizedBox(
+      new SizedBox(      
       height: 25.0,
-      child: Text("NUEVOS ENTRENAMIENTOS",
+      child: Text("NOVEDADES",
       style: TextStyle(fontSize: 20.0),),
     ),
     new Container(
@@ -36,7 +36,7 @@ class _ParaVosPageState extends State<ParaVosPage> {
     child: new ClipRRect(
     borderRadius: new BorderRadius.circular(17.0),
     child: new Image(
-    image: new AssetImage("assets/gym1.jpg"),
+    image: new AssetImage("assets/musicup.jpg"),
     height: 200.0,
     width: 200.0,
     fit: BoxFit.cover,
@@ -49,7 +49,7 @@ class _ParaVosPageState extends State<ParaVosPage> {
     child: new ClipRRect(
     borderRadius: new BorderRadius.circular(17.0),
     child: new Image(
-    image: new AssetImage("assets/gym2.jpg"),
+    image: new AssetImage("assets/nutri-C.jpg"),
     height: 200.0,
     width: 200.0,
     fit: BoxFit.cover,
@@ -62,7 +62,7 @@ class _ParaVosPageState extends State<ParaVosPage> {
     child: new ClipRRect(
     borderRadius: new BorderRadius.circular(17.0),
     child: new Image(
-    image: new AssetImage("assets/gym3.jpg"),
+    image: new AssetImage("assets/mozap.jpeg"),
     height: 200.0,
     width: 200.0,
     fit: BoxFit.cover,
@@ -123,7 +123,62 @@ class _ParaVosPageState extends State<ParaVosPage> {
     ),
 
     ),
-    )
+    ),
+    
+    ],
+    ),
+    ),
+    new SizedBox(
+    height: 25.0,
+    child: Text("NUEVOS ENTRENAMIENTOS",
+    style: TextStyle(fontSize: 20.0),),
+    ),
+    new Container(
+    height: 250.0,
+    margin: EdgeInsets.all(10.0),
+    child: new ListView(
+    scrollDirection: Axis.horizontal,
+    children: <Widget>[
+    new Container(
+    margin: EdgeInsets.all(10.0),
+    child: new ClipRRect(
+    borderRadius: new BorderRadius.circular(17.0),
+    child: new Image(
+    image: new AssetImage("assets/gym1.jpg"),
+    height: 200.0,
+    width: 200.0,
+    fit: BoxFit.cover,
+    ),
+
+    ),
+    ),
+    new Container(
+    margin: EdgeInsets.all(10.0),
+    child: new ClipRRect(
+    borderRadius: new BorderRadius.circular(17.0),
+    child: new Image(
+    image: new AssetImage("assets/gym2.jpg"),
+    height: 200.0,
+    width: 200.0,
+    fit: BoxFit.cover,
+    ),
+
+    ),
+    ),
+    new Container(
+    margin: EdgeInsets.all(10.0),
+    child: new ClipRRect(
+    borderRadius: new BorderRadius.circular(17.0),
+    child: new Image(
+    image: new AssetImage("assets/gym3.jpg"),
+    height: 200.0,
+    width: 200.0,
+    fit: BoxFit.cover,
+    ),
+
+    ),
+    ),
+    
     ],
     ),
     ),

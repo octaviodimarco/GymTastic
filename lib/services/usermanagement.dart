@@ -31,8 +31,8 @@ class UserManagement {
               .then((docs) {
             if (docs.documents[0].exists) {
               if (docs.documents[0].data['TipoUsuario'] == 'Profesor') {
-                Navigator.of(context).pop();
-                Navigator.of(context).pushNamed('/maintabsprofe');
+                //Navigator.of(context).pop();
+                Navigator.popAndPushNamed(context, '/maintabsprofe');
                 // Navigator.of(context).pushNamed('/alumnosprofe');
               }
               if (docs.documents[0].data['TipoUsuario'] == 'Alumno') {

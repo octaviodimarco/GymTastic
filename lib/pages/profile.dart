@@ -72,7 +72,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         alignment: Alignment.center,
                         child: CircleAvatar(
                           radius: 100,
-                          backgroundColor: Color(0xff476cfb),
+                          backgroundColor: Color(0xffe8e8e8),
                           child: ClipOval(
                             child:
                             SizedBox(

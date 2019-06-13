@@ -5,6 +5,8 @@ import 'package:gymtastic/ui/consultas.dart';
 import 'package:gymtastic/ui/informationPage.dart';
 import 'package:gymtastic/ui/listviewpage.dart';
 import 'package:gymtastic/ui/updatepage.dart';
+import 'package:unicorndial/unicorndial.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
 void main() {
@@ -38,6 +40,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+
+     
   
   TextEditingController descriptionInputController;
   TextEditingController nameInputController;
@@ -75,31 +80,89 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
   @override
+
+
+
+
+  
   Widget build(BuildContext context) {
+
+
+     var childButtons = List<UnicornButton>();
+
+    childButtons.add(UnicornButton(
+      hasLabel: true,
+      labelText: "Add",
+      currentButton: FloatingActionButton(
+        heroTag: "add",
+        backgroundColor: Colors.redAccent,
+        mini: true,
+        child: Icon(Icons.add),
+        onPressed: (){
+          Route route = MaterialPageRoute(builder: (context) => MyAddPage());
+          Navigator.push(context, route);
+        },
+      ),
+
+    ));
+
+    childButtons.add(UnicornButton(
+      hasLabel: true,
+      labelText: "ListView",
+        currentButton: FloatingActionButton(
+            heroTag: "listview",
+            backgroundColor: Colors.greenAccent,
+            mini: true,
+            child: Icon(Icons.list),
+            onPressed: (){
+              Route route = MaterialPageRoute(builder: (context) => MyListPage());
+             Navigator.push(context, route); 
+            },
+            )));
+
+    childButtons.add(UnicornButton(
+      hasLabel: true,
+      labelText: "Search",
+        currentButton: FloatingActionButton(
+            heroTag: "search",
+            backgroundColor: Colors.blueAccent,
+            mini: true,
+            child: Icon(Icons.search),
+            onPressed: (){
+               Route route = MaterialPageRoute(builder: (context) => MyQueryPage());
+             Navigator.push(context, route); 
+            },)));
+
+
+
+
+
+
     CommonThings.size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-       // title: Text('View Page1'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.list),
-            tooltip: 'List',
-            onPressed: () { 
-              Route route = MaterialPageRoute(builder: (context) => MyListPage());
-             Navigator.push(context, route);            
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.search),
-            tooltip: 'Search',
-            onPressed: () { 
-              Route route = MaterialPageRoute(builder: (context) => MyQueryPage());
-             Navigator.push(context, route);            
-            },
-          ),
-        ],
-      ),
+      // appBar: AppBar(
+      //  // title: Text('View Page1'),
+      //   actions: <Widget>[
+      //     IconButton(
+      //       icon: Icon(Icons.list),
+      //       tooltip: 'List',
+      //       onPressed: () { 
+      //         Route route = MaterialPageRoute(builder: (context) => MyListPage());
+      //        Navigator.push(context, route);            
+      //       },
+      //     ),
+      //     IconButton(
+      //       icon: Icon(Icons.search),
+      //       tooltip: 'Search',
+      //       onPressed: () { 
+      //         Route route = MaterialPageRoute(builder: (context) => MyQueryPage());
+      //        Navigator.push(context, route);            
+      //       },
+      //     ),
+      //   ],
+      // ),
       body: StreamBuilder(
+        
         stream: Firestore.instance.collection("ejercicios").snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
@@ -140,13 +203,13 @@ class _MyHomePageState extends State<MyHomePage> {
                             doc.data["name"],
                             style: TextStyle(
                               color: Colors.blueAccent,
-                              fontSize: 19.0,
+                              fontSize: 15.0,
                             ),
                           ),
                           subtitle: Text(
                             doc.data["description"],
                             style: TextStyle(
-                                color: Colors.redAccent, fontSize: 12.0),
+                                color: Colors.grey[600], fontSize: 12.0),
                           ),
                            onTap: () => navigateToDetail(doc),
                         ),
@@ -185,18 +248,25 @@ class _MyHomePageState extends State<MyHomePage> {
           );
         }
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
-        ),
-        backgroundColor: Colors.pinkAccent,
-        onPressed: () {
-          Route route = MaterialPageRoute(builder: (context) => MyAddPage());
-          Navigator.push(context, route);
-        },
-      ),
+      floatingActionButton: UnicornDialer(
+            backgroundColor: Color.fromRGBO(255, 255, 255, 0.6),
+            parentButtonBackground: Colors.redAccent,
+            orientation: UnicornOrientation.VERTICAL,
+            parentButton: Icon(Icons.add),
+            childButtons: childButtons),
+      
+      
+      // FloatingActionButton(
+      //   child: Icon(
+      //     Icons.add,
+      //     color: Colors.white,
+      //   ),
+      //   backgroundColor: Colors.pinkAccent,
+      //   onPressed: () {
+      //     Route route = MaterialPageRoute(builder: (context) => MyAddPage());
+      //     Navigator.push(context, route);
+      //   },
+      // ),
     );
   }
 }
-

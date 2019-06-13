@@ -186,12 +186,15 @@ class AlumnosPageState extends State<AlumnosPage> {
         ),
       ),
        floatingActionButton: FloatingActionButton(
+         backgroundColor: Colors.redAccent,
+         //parentButtonBackground: Colors.redAccent,
         onPressed: () {
               setState(() {
                 showTextField = !showTextField;
               });
             },
         child: Icon(Icons.person_add),
+        
       ),
     );
   }

@@ -74,7 +74,7 @@ class _MyListPageState extends State<MyListPage> {
     //print('Width of the screen: ${CommonThings.size.width}');
     return new Scaffold(
       appBar: AppBar(
-       title: Text('View Page1'),
+       title: Text('Lista de Ejercicios'),
       ),
       body: StreamBuilder(
         stream: Firestore.instance.collection("ejercicios").snapshots(),
@@ -109,7 +109,7 @@ class _MyListPageState extends State<MyListPage> {
                             doc.data["name"],
                             style: TextStyle(
                               color: Colors.blueAccent,
-                              fontSize: 21.0,
+                              fontSize: 16.0,
                             ),
                           ),
                             // subtitle: Text(
@@ -143,11 +143,12 @@ class _MyListPageState extends State<MyListPage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
+        
         child: Icon(
           Icons.add,
           color: Colors.white,
         ),
-        backgroundColor: Colors.pinkAccent,
+        backgroundColor: Colors.redAccent,
         onPressed: () {
           Route route = MaterialPageRoute(builder: (context) => MyAddPage());
           Navigator.push(context, route);
